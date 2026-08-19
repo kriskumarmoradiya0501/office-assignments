@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f9;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #3b5bfd;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    header p {
+      margin: 5px 0 0;
+      font-size: 14px;
+    }
+    .form-container {
+      max-width: 900px;
+      margin: 20px auto;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .section-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #3b5bfd;
+      margin-bottom: 5px;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin: 10px 0 20px;
+    }
+    table {
+      width: 100%;
+      border-spacing: 0;
+    }
+    td {
+      padding: 8px 15px 8px 0;
+      vertical-align: top;
+    }
+    input, select, textarea {
+      width: 95%;
+      padding: 6px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    textarea {
+      resize: vertical;
+    }
+    .form-actions {
+      text-align: center;
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      background-color: #3b5bfd;
+      color: #fff;
+      font-size: 14px;
+      cursor: pointer;
+      margin: 0 10px;
+    }
+    button:hover {
+      background-color: #2f4be0;
+    }
+    .agreement {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+    .agreement a {
+      color: #3b5bfd;
+      text-decoration: none;
+    }
+    .agreement a:hover {
+      text-decoration: underline;
+    }
+    .agreement {
+          display: inline-flex;       /* keeps checkbox + text aligned */
+          align-items: center;        /* vertically centers checkbox */
+          gap: 5px;                   /* small space between checkbox and text */
+          font-size: 14px;
+        }
+        .agreement input[type="checkbox"] {
+          margin: 0;                  /* remove default spacing */
+        }
+  </style>
+        <style>
+        
+      </style>
+
+</head>
+<body>
+  <header>
+    <h1>User Registration Form</h1>
+    <p>Simple HTML & CSS Form using div elements</p>
+  </header>
+
+  <div class="form-container">
+    <form action="#">
+      <!-- Personal Information -->
+      <div>
+        <p class="section-title">Personal Information</p>
+        <hr>
+        <table>
+          <tr>
+            <td>Full Name *</td>
+            <td>Email Address *</td>
+            <td>Phone Number</td>
+            <td>Date of Birth</td>
+          </tr>
+          <tr>
+            <td><input type="text" required></td>
+            <td><input type="email" required></td>
+            <td><input type="tel"></td>
+            <td><input type="date"></td>
+          </tr>
+          <tr>
+            <td>Gender</td>
+            <td>Password</td>
+            <td>Confirm Password</td>
+            <td>Profile Picture</td>
+          </tr>
+          <tr>
+            <td>
+              <label><input type="radio" name="gender" value="male"> Male</label>
+              <label><input type="radio" name="gender" value="female"> Female</label>
+              <label><input type="radio" name="gender" value="other"> Other</label>
+            </td>
+            <td><input type="password" required></td>
+            <td><input type="password" required></td>
+            <td><input type="file"></td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Address Information -->
+      <div>
+        <p class="section-title">Address Information</p>
+        <hr>
+        <table>
+          <tr>
+            <td>Address Line 1 *</td>
+            <td>Address Line 2</td>
+            <td>City</td>
+            <td>State</td>
+          </tr>
+          <tr>
+            <td><input type="text" required></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td>
+              <select name="state">
+                <option value="Surat">Surat</option>
+                <option value="Ahmedabad">Ahmedabad</option>
+                <option value="Dahod">Dahod</option>
+                <option value="Vadodara">Vadodara</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Country</td>
+            <td>Pin / Zip Code</td>
+          </tr>
+          <tr>
+            <td>
+              <select name="country">
+                <option value="India">India</option>
+                <option value="USA">USA</option>
+                <option value="UAE">UAE</option>
+                <option value="AUS">Australia</option>
+              </select>
+            </td>
+            <td><input type="number"></td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Additional Information -->
+      <div>
+        <p class="section-title">Additional Information</p>
+        <hr>
+        <table>
+          <tr>
+            <td>About You<br><textarea name="aboutYou" maxlength="200"></textarea></td>
+            <td>Skills<br>
+              <select multiple name="skills">
+                <option value="HTML">HTML</option>
+                <option value="CSS">CSS</option>
+                <option value="JavaScript">JavaScript</option>
+                <option value="Python">Python</option>
+                <option value="Java">Java</option>
+                <option value="React">React</option>
+              </select>
+            </td>
+            <td>
+              Experience Level<br>
+              <select name="experience">
+                <option value="fresher">Fresher</option>
+                <option value="0-2">0-2 years</option>
+                <option value="2-5">2-5 years</option>
+                <option value="5+">5+ years</option>
+              </select>
+              <br><br>
+              Preferred Contact Time<br>
+              <input type="time">
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Agreement & Actions -->
+      <label class="agreement">
+        <input type="checkbox" required>
+        I agree to the <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a>
+      </label>
+
+
+      <div class="form-actions">
+        <button type="submit">Submit Form</button>
+        <button type="reset">Reset Form</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

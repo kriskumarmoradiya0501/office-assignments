@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body{
+            background-color: #eef0f6;
+        }
+        td{
+            padding: 8px 30px 8px 0;
+        }
+        input, select, textarea{
+            padding: 6px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 90%;
+        }
+        header{
+            border: none;
+            background: linear-gradient(90deg, #3b5bfd, #7c5cff);
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+        header h1{
+            font-size: 28px;
+        }
+        header p{
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        p.section-title{
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        div > p.section-title{
+            color: #3b5bfd;
+        }
+        div:nth-of-type(2) > p.section-title{
+            color: #16a34a;
+        }
+        div:nth-of-type(3) > p.section-title{
+            color: #7c3aed;
+        }
+        hr{
+            margin-bottom: 15px;
+            border: none;
+            border-top: 1px solid #ddd;
+        }
+        button{
+            padding: 10px 25px;
+            border: none;
+            border-radius: 5px;
+            background-color: #3b5bfd;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        button:hover{
+            background-color: #2f4be0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>User Registration Form</h1>
+        <p>Simple HTML & CSS Form using div elements</p>
+    </header>
+
+    <div style="margin-left: 50px; margin-right: 50px;border: 1px solid #ddd;border-radius: 15px;align-items: center; margin-top: 20px; padding: 20px; background-color: white;">
+        <form action="#">
+            <div>
+                <p class="section-title">Personal Information</p>
+                <hr>
+                <table>
+                    <tr>
+                        <td>Full Name *</td>
+                        <td>Email Address *</td>
+                        <td>Phone Number</td>
+                        <td>Date of Birth</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text"></td>
+                        <td><input type="email"></td>
+                        <td><input type="number"></td>
+                        <td><input type="date"></td>
+                    </tr>
+                    <tr>
+                        <td>Gender</td>
+                        <td>Password</td>
+                        <td>Confirm Password</td>
+                        <td>Profile Picture</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label><input type="radio" name="gender" value="male" style="width:auto;"> Male</label>
+                            <label><input type="radio" name="gender" value="female" style="width:auto;"> Female</label>
+                            <label><input type="radio" name="gender" value="other" style="width:auto;"> Other</label>
+                        </td>
+                        <td><input type="password"></td>
+                        <td><input type="password"></td>
+                        <td><input type="file"></td>
+                    </tr>
+                </table>
+            </div>
+            <br>
+            <div>
+                <p class="section-title">Address Information</p>
+                <hr>
+                <table>
+                    <tr>
+                        <td>Address line 1 *</td>
+                        <td>Address line 2 *</td>
+                        <td>City</td>
+                        <td>State</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                        <td>
+                            <select name="state" id="state">
+                                <option value="Surat">Surat</option>
+                                <option value="Ahmedabad">Ahmedabad</option>
+                                <option value="Dahod">Dahod</option>
+                                <option value="Vadodara">vadodara</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Country</td>
+                        <td>Pin / Zip Code : </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select name="Country" id="Country">
+                                <option value="India">India</option>
+                                <option value="USA">USA</option>
+                                <option value="UAE">UAE</option>
+                                <option value="AUS">AUS</option>
+                            </select>
+                        </td>
+                        <td><input type="number"></td>
+                        
+                    </tr>
+                </table>
+            </div>
+            <br>
+            <div>
+                <p class="section-title">Additional Information</p>
+                <hr>
+                <table>
+                    <tr>
+                        <td rowspan="2">About You <br><textarea name="aboutYou" id="aboutYou"></textarea></td>
+                        <td rowspan="2">Skills <br>  <select multiple name="skills" id="skills">
+                                <option value="HTML">HTML</option>
+                                <option value="CSS">CSS</option>
+                                <option value="JavaScript">JavaScript</option>
+                                <option value="Python">Python</option>
+                                <option value="Java">Java</option>
+                                <option value="React">React</option>
+                            </select>
+                        </td>
+                        <td>Expertice level <br>
+                        
+                            <select name="Expertice" id="Expertice">
+                                <option value="0-2">0-2 years</option>
+                                <option value="2-5">2-5 years</option>
+                                <option value="5+">5+ years</option>
+                                <option value="fresher">fresher</option>
+                            </select>
+                            <br>
+                                Prefererd Contact time<br><input type="time">
+
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <label><input type="checkbox" required>I agree to the <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a></label>
+                
+                <div style="margin-top: 15px; text-align: center;">
+                    <button type="submit">Submit Form</button>
+                    <button type="reset">Reset Form</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</body>
+</html>
