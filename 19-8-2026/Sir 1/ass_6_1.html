@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Transform Values with Map</title>
+  <!-- Bootstrap for easy styling -->
+  <link rel="stylesheet" href="bootstrap-5.3.8/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+
+  <div class="container mt-5">
+    <div class="card p-4 shadow">
+      <h1 class="mb-4">Transform Values with Map</h1>
+
+      <!-- Dropdown to choose operation -->
+      <label for="operation" class="form-label">Choose Operation:</label>
+      <select id="operation" class="form-select mb-3">
+        <option value="square">Square (x²)</option>
+        <option value="cube">Cube (x³)</option>
+        <option value="quad">Quadruple (x⁴)</option>
+      </select>
+
+      <!-- Button to apply transformation -->
+      <button class="btn btn-primary w-100 mb-3" onclick="transform()">Apply</button>
+
+      <!-- Show original numbers -->
+      <h5>Original Numbers:</h5>
+      <p id="original"></p>
+
+      <!-- Show transformed results -->
+      <h5>Transformed Results:</h5>
+      <p id="result" class="fw-bold text-success"></p>
+    </div>
+  </div>
+
+  <script>
+    // Step 1: Define the original list of numbers
+    const numbers = [3, 4, 7, 8, 11];
+
+    // Show original numbers on page load
+    document.getElementById("original").textContent = numbers.join(", ");
+
+    // Step 2: Function to transform numbers
+    function transform() {
+      const operation = document.getElementById("operation").value;
+      let results;
+
+      // Step 3: Apply transformation based on dropdown choice
+      if (operation === "square") {
+        results = numbers.map(n => n ** 2); // square each number
+      } else if (operation === "cube") {
+        results = numbers.map(n => n ** 3); // cube each number
+      } else if (operation === "quad") {
+        results = numbers.map(n => n ** 4); // raise to 4th power
+      }
+
+      // Step 4: Show results on the page
+      document.getElementById("result").textContent = results.join(", ");
+    }
+  </script>
+
+</body>
+</html>

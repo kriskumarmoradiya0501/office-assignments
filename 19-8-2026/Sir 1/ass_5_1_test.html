@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap-5.3.8/dist/css/bootstrap.min.css">
+</head>
+<body style="background-color: beige;">
+    <div class="account-card max auto p-4 p-md-5 bg-white rounded-4 shadow-sm m-5">
+        <h1>Create Your Account</h1>
+        <form action="#" id="accountForm">
+
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" id="username" name="username" class="form-control" placeholder="e.g., Krishkumar Moradiya">
+                <small class="form-text text-secondary">Use letters and spaces only.</small>
+                <small id="usernameError" class="text-danger"></small>
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Choose a strong password">
+                <small class="form-text text-secondary">At least 8 characters, one capital letter, and one special character.</small>
+                <small id="passwordError" class="text-danger"></small>
+            </div>
+
+
+            <div class="mb-3">
+                <label for="mobile" class="form-label">Mobile</label>
+                <input type="tel" id="mobile" name="mobile" class="form-control" placeholder="10-digit mobile number" maxlength="10">
+                <small class="form-text text-secondary">Enter exactly 10 numbers.</small>
+                <small id="mobileError" class="text-danger"></small>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+
+        </form>
+    </div>
+
+    <script>
+  const form = document.getElementById('accountForm');
+  const username = document.getElementById('username');
+  const password = document.getElementById('password');
+  const mobile = document.getElementById('mobile');
+
+  function showError(id, message) {
+    document.getElementById(id).textContent = message;
+  }
+
+  function validateUsername() {
+    const value = username.value.trim();
+    const isValid = /^[A-Za-z ]+$/.test(value);
+    showError('usernameError', isValid ? '' : 'Only letters and spaces allowed.');
+    return isValid;
+  }
+
+  function validatePassword() {
+    const value = password.value;
+    const isValid = value.length >= 8 && /[A-Z]/.test(value) && /[^A-Za-z0-9]/.test(value);
+    showError('passwordError', isValid ? '' : 'Must be 8+ chars, 1 capital, 1 special.');
+    return isValid;
+  }
+
+  function validateMobile() {
+    const isValid = /^\d{10}$/.test(mobile.value);
+    showError('mobileError', isValid ? '' : 'Enter exactly 10 digits.');
+    return isValid;
+  }
+
+  form.addEventListener('submit', function(e) {
+    if (!validateUsername() || !validatePassword() || !validateMobile()) {
+      e.preventDefault(); // stop form if invalid
+    }
+  });
+</script>
+
+</body>
+</html>

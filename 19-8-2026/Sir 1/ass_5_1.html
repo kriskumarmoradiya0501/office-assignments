@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your Account</title>
+    <link rel="stylesheet" href="bootstrap-5.3.8/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background: #f5f6fa;
+            color: #111827;
+        }
+
+        .account-card {
+            max-width: 730px;
+        }
+
+        h1 {
+            font-size: 30px;
+        }
+
+        .form-control {
+            padding: 17px 20px;
+            border-radius: 14px;
+            font-size: 20px;
+        }
+
+        .form-control:focus {
+            border-color: #667cff;
+            box-shadow: 0 0 0 0.25rem rgba(102, 124, 255, 0.2);
+        }
+
+        .error-text {
+            min-height: 24px;
+            font-size: 17px;
+        }
+
+        .btn-primary {
+            border-radius: 14px;
+            background: #667cff;
+            border-color: #667cff;
+        }
+
+        .btn-primary:hover {
+            background: #5269ed;
+            border-color: #5269ed;
+        }
+
+        @media (max-width: 480px) {
+            .account-card {
+                padding: 30px 20px 24px !important;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container py-4">
+        <div class="account-card mx-auto p-4 p-md-5 bg-white rounded-4 shadow-sm">
+            <h1 class="mb-4 fw-bold">Create your account</h1>
+
+            <form id="accountForm">
+                <div class="mb-3">
+                    <label class="form-label fs-5" for="username">Username</label>
+                    <input class="form-control" id="username" name="username" type="text" placeholder="e.g., Kriskumar moradiya.">
+                    <small class="form-text text-secondary">Use letters and spaces only.</small>
+                    <small id="usernameError" class="error-text d-block text-danger"></small>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fs-5" for="password">Password</label>
+                    <input class="form-control" id="password" name="password" type="password" placeholder="Choose a strong password">
+                    <small class="form-text text-secondary">At least 8 characters, one capital letter, and one special character.</small>
+                    <small id="passwordError" class="error-text d-block text-danger"></small>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label fs-5" for="mobile">Mobile</label>
+                    <input class="form-control" id="mobile" name="mobile" type="tel" placeholder="10-digit mobile number" maxlength="10">
+                    <small class="form-text text-secondary">Enter exactly 10 numbers.</small>
+                    <small id="mobileError" class="error-text d-block text-danger"></small>
+                </div>
+
+                <button class="btn btn-primary w-100 py-3 fs-4 fw-bold" type="submit">Sign up</button>
+            </form>
+            </div>
+    </main>
+
+    <script>
+        const accountForm = document.getElementById('accountForm');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const mobileInput = document.getElementById('mobile');
+
+        function showError(errorId, message) {
+            document.getElementById(errorId).textContent = message;
+        }
+
+        function validateUsername() {
+            const username = usernameInput.value.trim();
+            const isValid = /^[A-Za-z]+(?: [A-Za-z]+)*$/.test(username);
+            showError('usernameError', isValid ? '' : 'Username can contain letters and spaces only.');
+            return isValid;
+        }
+
+        function validatePassword() {
+            const password = passwordInput.value;
+            const hasMinimumLength = password.length >= 8;
+            const hasCapitalLetter = /[A-Z]/.test(password);
+            const hasSpecialCharacter = /[^A-Za-z0-9]/.test(password);
+            const isValid = hasMinimumLength && hasCapitalLetter && hasSpecialCharacter;
+            showError('passwordError', isValid ? '' : 'Password must be at least 8 characters with one capital letter and one special character.');
+            return isValid;
+        }
+
+        function validateMobile() {
+            const isValid = /^\d{10}$/.test(mobileInput.value);
+            showError('mobileError', isValid ? '' : 'Enter exactly 10 numbers.');
+            return isValid;
+        }
+
+        accountForm.addEventListener('submit', function (event) {
+            const isUsernameValid = validateUsername();
+            const isPasswordValid = validatePassword();
+            const isMobileValid = validateMobile();
+            const isFormValid = isUsernameValid && isPasswordValid && isMobileValid;
+
+            if (!isFormValid) {
+                event.preventDefault();
+            }
+        });
+
+        usernameInput.addEventListener('input', validateUsername);
+        passwordInput.addEventListener('input', validatePassword);
+        mobileInput.addEventListener('input', validateMobile);
+    </script>
+</body>
+
+</html>

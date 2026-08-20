@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap-5.3.8/dist/css/bootstrap.min.css">
+    
+    <script>
+        function toggleSwitch(element) {
+            var Lamp = document.getElementById('Lamp');
+            Lamp.src = element.checked ? 'ass_4_1_2.png' : 'ass_4_1_1.png'
+        }
+        function multiStyleChange() {
+            var para = document.getElementById("multiStyle");
+            para.style.fontSize = "40px";
+            para.style.color = "blue";
+            para.style.fontWeight = "bold";
+        }
+    </script>
+</head>
+
+<body style="background-color: rgb(169, 192, 212);">
+
+
+    <div class="container mt-5">
+        <div class="card shadow">
+            <div class="card-body">
+                <h1 class="text-center">Lamp From 2 diffeent button</h1>
+                <div class="row justify-content-center">
+                    <div class="col-md-4 text-center mt-5"
+                        onclick="document.getElementById('Lamp').src ='ass_4_1_2.png'">
+                        <button type="button" id="onButton" class="btn btn-primary mt-5">Turn on the light</button>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="ass_4_1_1.png" alt="lamp ON" id="Lamp">
+                    </div>
+                    <div class="col-md-4 text-center mt-5"
+                        onclick="document.getElementById('Lamp').src = 'ass_4_1_1.png'">
+                        <button type="button" id="offButton" class="btn btn-danger mt-5">Turn off the Light</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container text-center">
+    </div>
+    <div class="container mt-5">
+        <div class="card shadow">
+            <div class="card-body">
+                <div class="row justify-content-center">
+                    <h1>Toggle Swtich using checkbox rolw switch</h1>
+                    <div class="col-md-4 text-center">
+                        <div class="form-check form-switch ">
+                            <input class="form-check-input" type="checkbox" role="switch" id="lampSwitch"
+                                onchange="toggleSwitch(this)">
+                            <label class="form-check-label" for="lampSwitch">Toggle the light</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container text-center mt-5">
+        <div class="card shadow">
+            <div class="card-body">
+                <h1>Inner Html for style</h1>
+                <p id="htmlStyleText">
+                    Hello We can chnage style though the java script in html
+                </p>
+                <button type="button" class="btn btn-primary"
+                    onclick="document.getElementById('htmlStyleText').style.fontSize = '50px'">Chenge the text</button>
+                <button type="button" class="btn btn-danger"
+                    onclick="document.getElementById('htmlStyleText').style.fontSize = '1rem'">Chenge the text</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container text-center mt-5">
+        <div class="card shadow">
+            <div class="card-body">
+                <h1>Multple style chnage at once</h1>
+                <p id="multiStyle">Hello We can chnage style though the java script in html</p>
+                <button type="button" class="btn btn-primary" onclick="multiStyleChange()">Click here to change
+                    multiStyle</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-center mt-5">
+        <div class="card shadow">
+            <div class="card-body">
+                <h2>Document.Write </h2>
+                <div>
+                    <script>
+                        document.write(5 + 6);
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container text-center mt-5">
+        <div class="card shadow">
+            <div class="card-body">
+                <h1>Alert Box demo</h1>
+                <button type="button" class="btn btn-danger" onclick="alert('alert Box 1 + 2 = '+(1+2))"> alert
+                    box</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-center mt-5">
+        <div class="card shadow">
+            <div class="card-body">
+                <h1>Console.log demo </h1>
+                <button type="button" class="btn btn-primary" onclick="console.log('Clicked me ')">Click Me</button>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container text-center mt-5">
+        <div class="card shadow">
+            <div class="card-body">
+                <h1>Hover Exaple</h1>
+                <p id="hoverPara">Hover over me!</p>
+                <script>
+                    document.getElementById("hoverPara").onmouseover = function () {
+                        this.style.color = "red";
+                    };
+                    document.getElementById("hoverPara").onmouseout = function () {
+                        this.style.color = "Blue";
+                    };
+                </script>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container text-center mt-5">
+        <div class="card shadow">
+            <div class="card-body">
+                <h1>Key Down example you can see output in console</h1>
+                <input type="text" id="keydownInput" placeholder="Press any key">
+                <script>
+                    document.getElementById("keydownInput").addEventListener("keydown", function (event) {
+                        console.log("Key down: " + event.key);
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container text-center mt-5">
+        <div class="card shadow">
+            <div class="card-body">
+                <h1>Key up example you can see output in console</h1>
+                <input type="text" id="keyupInput" placeholder="Release a key">
+                <script>
+                    document.getElementById("keyupInput").addEventListener("keyup", function (event) {
+                        console.log("Key up: " + event.key);
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container text-center mt-5">
+        <div class="card shadow">
+            <div class="card-body">
+                <h1>Key press demo</h1>
+                <input type="text" id="keypressInput" placeholder="Type something">
+
+                <script>
+                    document.getElementById("keypressInput").addEventListener("keypress", function (event) {
+                        console.log("Key press: " + event.key);
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

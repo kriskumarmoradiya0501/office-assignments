@@ -90,20 +90,7 @@
     .agreement a:hover {
       text-decoration: underline;
     }
-    .agreement {
-          display: inline-flex;       /* keeps checkbox + text aligned */
-          align-items: center;        /* vertically centers checkbox */
-          gap: 5px;                   /* small space between checkbox and text */
-          font-size: 14px;
-        }
-        .agreement input[type="checkbox"] {
-          margin: 0;                  /* remove default spacing */
-        }
   </style>
-        <style>
-        
-      </style>
-
 </head>
 <body>
   <header>
@@ -225,11 +212,12 @@
       </div>
 
       <!-- Agreement & Actions -->
-      <label class="agreement">
-        <input type="checkbox" required>
-        I agree to the <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a>
-      </label>
-
+      <div class="agreement">
+        <label>
+          <input type="checkbox" required>
+          I agree to the <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a>
+        </label>
+      </div>
 
       <div class="form-actions">
         <button type="submit">Submit Form</button>

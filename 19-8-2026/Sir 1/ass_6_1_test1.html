@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap-5.3.8/dist/css/bootstrap.min.css">
+</head>
+
+<body style="background-color: rgb(230, 220, 172);">
+
+    <div class="container mt-5">
+        <div class="card shadow">
+            <div class="card-body">
+                <div class="row">
+
+                        <div class="col-md-4 p-5">
+                            <select multiple name="numbers" id="numbers"></select>
+                        </div>
+
+                        <div class="col-md-4 p-5">
+                            <select name="options" id="options">
+                                <option value="3">For cube n^3 of numbers</option>
+                                <option value="2">For Squer n^2 of numbers</option>
+                                <option value="4">For n^4 of numbers</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-4 p-5">
+                            <select multiple name="resultNum" id="resultNum"></select>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+    </div>
+    <script>
+
+        const numbers = [];
+        const selectNumbers = document.getElementById("numbers");
+        for (let i = 1; i < 10; i++) {
+            const option = document.createElement("option");
+            numbers.push(i)
+            option.value = i;
+            option.textContent = i;
+            selectNumbers.appendChild(option);
+        }
+
+        const selectOption = document.getElementById("options");
+        const selectResult = document.getElementById("resultNum");
+
+        function updateResults() {
+            selectResult.innerHTML = "";
+            let power = parseInt(selectOption.value);
+
+            const results = numbers.map(n => n ** power);
+
+            results.forEach((res, index) => {
+                const optionRes = document.createElement("option");
+                optionRes.value = res;
+                optionRes.textContent = res;
+                selectResult.appendChild(optionRes);
+            });
+        }
+
+
+        updateResults();
+
+        selectOption.addEventListener("change", updateResults);
+
+    </script>
+
+</body>
+
+</html>
