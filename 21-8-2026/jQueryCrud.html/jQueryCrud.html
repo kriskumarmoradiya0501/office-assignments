@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery CRUD with DummyJSON</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ccc;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        input,
+        button {
+            margin: 5px;
+            padding: 6px;
+        }
+
+        .form-section {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2> jQuery CRUD with Fake API (DummyJSON)</h2>
+    <!-- Create / Update Form -->
+    <div class="form-section">
+        <input type="hidden" id="postId">
+        <input type="text" id="title" placeholder="Enter title">
+        <input type="text" id="body" placeholder="Enter body">
+        <button id="createBtn">Create</button>
+        <button id="updateBtn" disabled>Update</button>
+    </div>
+
+    © 2025 Clarent Institute. All rights reserved. This document is strictly private, confidential and personal to its
+    recipients and should not be copied, distributed or reproduced in whole or in part, nor passed to any third party.
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Body</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="postTable"></tbody>
+    </table>
+    <script>
+        const API_URL = "https://dummyjson.com/posts";
+        function loadPosts() {
+            $.get(API_URL, function (data) {
+                $("#postTable").empty();
+                data.posts.forEach(post => {
+                    $("#postTable").append(`
+<tr>
+<td>${post.id}</td>
+<td>${post.title}</td>
+<td>${post.body}</td>
+<td>
+<button onclick="editPost(${post.id})">Edit</button>
+<button onclick="deletePost(${post.id})">Delete</button>
+</td>
+</tr>
+`);
+                });
+            });
+        }
+
+            $("#createBtn").click(function () {
+                const title = $("#title").val();
+                const body = $("#body").val();
+                $.ajax({
+                    url: API_URL + "/add",
+                    type: "POST",
+                    data: JSON.stringify({ title, body, userId: 1 }),
+                    contentType: "application/json; charset=UTF-8",
+                    success: function (newPost) {
+                        alert("Created Post ID: " + newPost.id);
+                        loadPosts();
+                        $("#title, #body").val("");
+                    },
+                    error: function (xhr, status, error) {
+                        let message = JSON.parse(xhr.responseText).message;
+                        alert(message);
+                    }
+                });
+            });
+        function editPost(id, title, body) {
+            $.get(API_URL + "/" + id, function (post) {
+                $("#postId").val(post.id);
+                $("#title").val(post.title);
+                $("#body").val(post.body);
+                $("#updateBtn").prop("disabled", false);
+                $("#createBtn").prop("disabled", true);
+            });
+        }
+
+            $("#updateBtn").click(function () {
+                const id = $("#postId").val();
+                const title = $("#title").val();
+                const body = $("#body").val();
+                $.ajax({
+                    url: API_URL + "/" + id,
+                    type: "PUT",
+                    data: JSON.stringify({ title, body }),
+                    contentType: "application/json; charset=UTF-8",
+                    success: function (updatedPost) {
+                        alert("Updated Post ID: " + updatedPost.id);
+                        loadPosts();
+                        $("#title, #body, #postId").val("");
+                        $("#updateBtn").prop("disabled", true);
+                        $("#createBtn").prop("disabled", false);
+                    }
+                });
+            });
+        function deletePost(id) {
+            $.ajax({
+                url: API_URL + "/" + id,
+                type: "DELETE",
+                success: function (result) {
+                    alert("Deleted Post ID: " + id);
+                    loadPosts();
+                }
+            });
+        }
+        // Initial load
+        $(document).ready(function () {
+            loadPosts();
+        });
+    </script>
+</body>
+
+</html>
+
+© 2025 Clarent Institute. All rights reserved. This document is strictly private, confidential and personal to its
+recipients and should not be copied, distributed or reproduced in whole or in part, nor passed to any third party.
+$(document).ready(function() {
+loadPosts();
+});
+</script>
+</body>
+
+</html>
