@@ -1,0 +1,15 @@
+D:\office\C#\1-09-2026\practiceApp\bin\Debug\net8.0\practiceApp.exe
+D:\office\C#\1-09-2026\practiceApp\bin\Debug\net8.0\practiceApp.deps.json
+D:\office\C#\1-09-2026\practiceApp\bin\Debug\net8.0\practiceApp.runtimeconfig.json
+D:\office\C#\1-09-2026\practiceApp\bin\Debug\net8.0\practiceApp.dll
+D:\office\C#\1-09-2026\practiceApp\bin\Debug\net8.0\practiceApp.pdb
+D:\office\C#\1-09-2026\practiceApp\obj\Debug\net8.0\practiceApp.GeneratedMSBuildEditorConfig.editorconfig
+D:\office\C#\1-09-2026\practiceApp\obj\Debug\net8.0\practiceApp.AssemblyInfoInputs.cache
+D:\office\C#\1-09-2026\practiceApp\obj\Debug\net8.0\practiceApp.AssemblyInfo.cs
+D:\office\C#\1-09-2026\practiceApp\obj\Debug\net8.0\practiceApp.csproj.CoreCompileInputs.cache
+D:\office\C#\1-09-2026\practiceApp\obj\Debug\net8.0\practiceApp.sourcelink.json
+D:\office\C#\1-09-2026\practiceApp\obj\Debug\net8.0\practiceApp.dll
+D:\office\C#\1-09-2026\practiceApp\obj\Debug\net8.0\refint\practiceApp.dll
+D:\office\C#\1-09-2026\practiceApp\obj\Debug\net8.0\practiceApp.pdb
+D:\office\C#\1-09-2026\practiceApp\obj\Debug\net8.0\practiceApp.genruntimeconfig.cache
+D:\office\C#\1-09-2026\practiceApp\obj\Debug\net8.0\ref\practiceApp.dll

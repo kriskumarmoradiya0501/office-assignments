@@ -1,0 +1,15 @@
+D:\office\C#\1-09-2026\StreamDemo\bin\Debug\net8.0\StreamDemo.exe
+D:\office\C#\1-09-2026\StreamDemo\bin\Debug\net8.0\StreamDemo.deps.json
+D:\office\C#\1-09-2026\StreamDemo\bin\Debug\net8.0\StreamDemo.runtimeconfig.json
+D:\office\C#\1-09-2026\StreamDemo\bin\Debug\net8.0\StreamDemo.dll
+D:\office\C#\1-09-2026\StreamDemo\bin\Debug\net8.0\StreamDemo.pdb
+D:\office\C#\1-09-2026\StreamDemo\obj\Debug\net8.0\StreamDemo.GeneratedMSBuildEditorConfig.editorconfig
+D:\office\C#\1-09-2026\StreamDemo\obj\Debug\net8.0\StreamDemo.AssemblyInfoInputs.cache
+D:\office\C#\1-09-2026\StreamDemo\obj\Debug\net8.0\StreamDemo.AssemblyInfo.cs
+D:\office\C#\1-09-2026\StreamDemo\obj\Debug\net8.0\StreamDemo.csproj.CoreCompileInputs.cache
+D:\office\C#\1-09-2026\StreamDemo\obj\Debug\net8.0\StreamDemo.sourcelink.json
+D:\office\C#\1-09-2026\StreamDemo\obj\Debug\net8.0\StreamDemo.dll
+D:\office\C#\1-09-2026\StreamDemo\obj\Debug\net8.0\refint\StreamDemo.dll
+D:\office\C#\1-09-2026\StreamDemo\obj\Debug\net8.0\StreamDemo.pdb
+D:\office\C#\1-09-2026\StreamDemo\obj\Debug\net8.0\StreamDemo.genruntimeconfig.cache
+D:\office\C#\1-09-2026\StreamDemo\obj\Debug\net8.0\ref\StreamDemo.dll

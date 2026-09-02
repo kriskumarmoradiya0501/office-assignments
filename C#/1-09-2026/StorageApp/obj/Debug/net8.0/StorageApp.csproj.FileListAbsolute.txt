@@ -1,0 +1,15 @@
+D:\office\C#\1-09-2026\StorageApp\obj\Debug\net8.0\StorageApp.GeneratedMSBuildEditorConfig.editorconfig
+D:\office\C#\1-09-2026\StorageApp\obj\Debug\net8.0\StorageApp.AssemblyInfoInputs.cache
+D:\office\C#\1-09-2026\StorageApp\obj\Debug\net8.0\StorageApp.AssemblyInfo.cs
+D:\office\C#\1-09-2026\StorageApp\obj\Debug\net8.0\StorageApp.csproj.CoreCompileInputs.cache
+D:\office\C#\1-09-2026\StorageApp\obj\Debug\net8.0\StorageApp.sourcelink.json
+D:\office\C#\1-09-2026\StorageApp\bin\Debug\net8.0\StorageApp.exe
+D:\office\C#\1-09-2026\StorageApp\bin\Debug\net8.0\StorageApp.deps.json
+D:\office\C#\1-09-2026\StorageApp\bin\Debug\net8.0\StorageApp.runtimeconfig.json
+D:\office\C#\1-09-2026\StorageApp\bin\Debug\net8.0\StorageApp.dll
+D:\office\C#\1-09-2026\StorageApp\bin\Debug\net8.0\StorageApp.pdb
+D:\office\C#\1-09-2026\StorageApp\obj\Debug\net8.0\StorageApp.dll
+D:\office\C#\1-09-2026\StorageApp\obj\Debug\net8.0\refint\StorageApp.dll
+D:\office\C#\1-09-2026\StorageApp\obj\Debug\net8.0\StorageApp.pdb
+D:\office\C#\1-09-2026\StorageApp\obj\Debug\net8.0\StorageApp.genruntimeconfig.cache
+D:\office\C#\1-09-2026\StorageApp\obj\Debug\net8.0\ref\StorageApp.dll

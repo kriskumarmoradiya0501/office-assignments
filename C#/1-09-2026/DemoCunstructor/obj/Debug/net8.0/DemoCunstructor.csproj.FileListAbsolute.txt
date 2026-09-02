@@ -1,0 +1,15 @@
+D:\office\C#\1-09-2026\DemoCunstructor\obj\Debug\net8.0\DemoCunstructor.GeneratedMSBuildEditorConfig.editorconfig
+D:\office\C#\1-09-2026\DemoCunstructor\obj\Debug\net8.0\DemoCunstructor.AssemblyInfoInputs.cache
+D:\office\C#\1-09-2026\DemoCunstructor\obj\Debug\net8.0\DemoCunstructor.AssemblyInfo.cs
+D:\office\C#\1-09-2026\DemoCunstructor\obj\Debug\net8.0\DemoCunstructor.csproj.CoreCompileInputs.cache
+D:\office\C#\1-09-2026\DemoCunstructor\obj\Debug\net8.0\DemoCunstructor.sourcelink.json
+D:\office\C#\1-09-2026\DemoCunstructor\bin\Debug\net8.0\DemoCunstructor.exe
+D:\office\C#\1-09-2026\DemoCunstructor\bin\Debug\net8.0\DemoCunstructor.deps.json
+D:\office\C#\1-09-2026\DemoCunstructor\bin\Debug\net8.0\DemoCunstructor.runtimeconfig.json
+D:\office\C#\1-09-2026\DemoCunstructor\bin\Debug\net8.0\DemoCunstructor.dll
+D:\office\C#\1-09-2026\DemoCunstructor\bin\Debug\net8.0\DemoCunstructor.pdb
+D:\office\C#\1-09-2026\DemoCunstructor\obj\Debug\net8.0\DemoCunstructor.dll
+D:\office\C#\1-09-2026\DemoCunstructor\obj\Debug\net8.0\refint\DemoCunstructor.dll
+D:\office\C#\1-09-2026\DemoCunstructor\obj\Debug\net8.0\DemoCunstructor.pdb
+D:\office\C#\1-09-2026\DemoCunstructor\obj\Debug\net8.0\DemoCunstructor.genruntimeconfig.cache
+D:\office\C#\1-09-2026\DemoCunstructor\obj\Debug\net8.0\ref\DemoCunstructor.dll

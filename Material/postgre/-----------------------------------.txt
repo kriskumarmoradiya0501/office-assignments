@@ -1,0 +1,106 @@
+-----------------------------------------------------------------------------------------------
+CREATE TABLE t_customers (
+    c_customer_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    c_customer_name VARCHAR(100) NOT NULL,
+    c_customer_city VARCHAR(50) NOT NULL,
+    c_customer_join_date DATE DEFAULT CURRENT_DATE,
+    c_customer_credit_limit NUMERIC(12,2) CHECK (c_customer_credit_limit >= 0)
+);
+
+CREATE TABLE t_orders (
+    c_order_id INT GENERATED ALWAYS AS IDENTITY (START WITH 101 INCREMENT BY 1) PRIMARY KEY,
+    c_customer_id INT REFERENCES t_customers(c_customer_id) ON DELETE CASCADE,
+    c_order_date DATE DEFAULT CURRENT_DATE,
+    c_total_amount NUMERIC(12,2) CHECK (c_total_amount >= 0)
+);
+
+CREATE TABLE t_products (
+    c_product_id INT GENERATED ALWAYS AS IDENTITY (START WITH 201 INCREMENT BY 1) PRIMARY KEY,
+    c_product_name VARCHAR(100) NOT NULL,
+    c_category VARCHAR(50) NOT NULL,
+    c_price NUMERIC(12,2) CHECK (c_price > 0)
+);
+
+CREATE TABLE t_order_details (
+    c_order_detail_id INT GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1) PRIMARY KEY,
+    c_order_id INT REFERENCES t_orders(c_order_id) ON DELETE CASCADE,
+    c_product_id INT REFERENCES t_products(c_product_id),
+    c_quantity INT CHECK (c_quantity > 0),
+    c_unit_price NUMERIC(12,2) CHECK (c_unit_price > 0)
+);
+
+INSERT INTO t_customers 
+(c_customer_name, c_customer_city, c_customer_join_date, c_customer_credit_limit)
+VALUES 
+('Alice Johnson', 'New York', '2023-01-15', 10000),
+('Bob Smith', 'Los Angeles', '2022-10-10', 15000),
+('Charlie Brown','Chicago','2024-05-05',8000),
+('David Wilson','New York','2023-08-20',20000),
+('Emma Thomas','Miami','2023-02-12',12000)
+;
+
+INSERT INTO t_orders ( c_customer_id, c_order_date, c_total_amount) VALUES
+( 1, '2024-01-01', 1200),
+( 3, '2024-06-15', 2500),
+( 2, '2024-03-20', 1800),
+( 4, '2024-02-10', 3000),
+( 1, '2024-04-05', 2200),
+( 5, '2024-05-18', 3500);
+
+INSERT INTO t_products ( c_product_name, c_category, c_price) VALUES
+( 'Laptop', 'Electronics', 1200),
+( 'Smartphone', 'Electronics', 800),
+( 'OfficeChair', 'Furniture', 150),
+( 'DiningTable', 'Furniture', 600),
+( 'Headphones', 'Electronics', 300);
+
+INSERT INTO t_order_details ( c_order_id, c_product_id, c_quantity, c_unit_price) VALUES
+( 101, 201, 1, 50000),
+( 101, 202, 2, 25000),
+( 102, 203, 4, 5000),
+( 103, 204, 1, 15000),
+(104, 205, 3, 3000),
+( 105, 201, 2, 50000),
+( 106, 202, 1, 25000);
+
+select * from t_customers;
+
+select * from t_products where c_category = 'Furniture';
+
+select * from t_customers where c_customer_join_date < '2023-06-01';
+
+select * from t_orders where c_total_amount > 3000;
+
+select c.c_customer_name,c.c_customer_city from t_customers c join t_orders o on c.c_customer_id = o.c_customer_id;
+
+select * from t_customers where c_customer_city in ('Mumbai','Chennai','Delhi');
+
+select * from t_products where c_product_name like '%Table%';
+
+SELECT * FROM t_orders WHERE DATE_PART('month', c_order_date) = 4 AND DATE_PART('year', c_order_date) = 2024;
+
+select * from t_products where c_price between 5000 and 30000;
+
+select * from t_customers where c_customer_name like '%R';
+
+SELECT c_customer_id, COUNT(c_order_id) AS total_orders
+FROM t_orders
+GROUP BY c_customer_id;
+
+SELECT c_customer_id ,COUNT(c_order_id) AS total_orders
+FROM t_orders
+GROUP BY c_customer_id;
+
+Select c_category, AVG(c_price) as total_price from t_products group by c_category;
+
+select MAX(c_total_amount)+MIN(c_total_amount) as sum_of_max_min from t_orders;
+
+select sum(c_total_amount) as total_revenue from t_orders;
+
+select count(distinct c_order_id) as distinct_orders from t_order_details;
+
+SELECT c_customer_id, COUNT(c_order_id) AS total_orders
+FROM t_orders
+GROUP BY c_customer_id
+HAVING COUNT(c_order_id) > 1;
+

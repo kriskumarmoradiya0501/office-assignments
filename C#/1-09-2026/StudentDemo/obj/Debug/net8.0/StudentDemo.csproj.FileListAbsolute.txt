@@ -1,0 +1,15 @@
+D:\office\C#\1-09-2026\StudentDemo\bin\Debug\net8.0\StudentDemo.exe
+D:\office\C#\1-09-2026\StudentDemo\bin\Debug\net8.0\StudentDemo.deps.json
+D:\office\C#\1-09-2026\StudentDemo\bin\Debug\net8.0\StudentDemo.runtimeconfig.json
+D:\office\C#\1-09-2026\StudentDemo\bin\Debug\net8.0\StudentDemo.dll
+D:\office\C#\1-09-2026\StudentDemo\bin\Debug\net8.0\StudentDemo.pdb
+D:\office\C#\1-09-2026\StudentDemo\obj\Debug\net8.0\StudentDemo.GeneratedMSBuildEditorConfig.editorconfig
+D:\office\C#\1-09-2026\StudentDemo\obj\Debug\net8.0\StudentDemo.AssemblyInfoInputs.cache
+D:\office\C#\1-09-2026\StudentDemo\obj\Debug\net8.0\StudentDemo.AssemblyInfo.cs
+D:\office\C#\1-09-2026\StudentDemo\obj\Debug\net8.0\StudentDemo.csproj.CoreCompileInputs.cache
+D:\office\C#\1-09-2026\StudentDemo\obj\Debug\net8.0\StudentDemo.sourcelink.json
+D:\office\C#\1-09-2026\StudentDemo\obj\Debug\net8.0\StudentDemo.dll
+D:\office\C#\1-09-2026\StudentDemo\obj\Debug\net8.0\refint\StudentDemo.dll
+D:\office\C#\1-09-2026\StudentDemo\obj\Debug\net8.0\StudentDemo.pdb
+D:\office\C#\1-09-2026\StudentDemo\obj\Debug\net8.0\StudentDemo.genruntimeconfig.cache
+D:\office\C#\1-09-2026\StudentDemo\obj\Debug\net8.0\ref\StudentDemo.dll

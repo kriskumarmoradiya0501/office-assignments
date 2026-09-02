@@ -1,0 +1,15 @@
+D:\office\C#\1-09-2026\EmployeeApp\obj\Debug\net8.0\EmployeeApp.GeneratedMSBuildEditorConfig.editorconfig
+D:\office\C#\1-09-2026\EmployeeApp\obj\Debug\net8.0\EmployeeApp.AssemblyInfoInputs.cache
+D:\office\C#\1-09-2026\EmployeeApp\obj\Debug\net8.0\EmployeeApp.AssemblyInfo.cs
+D:\office\C#\1-09-2026\EmployeeApp\obj\Debug\net8.0\EmployeeApp.csproj.CoreCompileInputs.cache
+D:\office\C#\1-09-2026\EmployeeApp\obj\Debug\net8.0\EmployeeApp.sourcelink.json
+D:\office\C#\1-09-2026\EmployeeApp\bin\Debug\net8.0\EmployeeApp.exe
+D:\office\C#\1-09-2026\EmployeeApp\bin\Debug\net8.0\EmployeeApp.deps.json
+D:\office\C#\1-09-2026\EmployeeApp\bin\Debug\net8.0\EmployeeApp.runtimeconfig.json
+D:\office\C#\1-09-2026\EmployeeApp\bin\Debug\net8.0\EmployeeApp.dll
+D:\office\C#\1-09-2026\EmployeeApp\bin\Debug\net8.0\EmployeeApp.pdb
+D:\office\C#\1-09-2026\EmployeeApp\obj\Debug\net8.0\EmployeeApp.dll
+D:\office\C#\1-09-2026\EmployeeApp\obj\Debug\net8.0\refint\EmployeeApp.dll
+D:\office\C#\1-09-2026\EmployeeApp\obj\Debug\net8.0\EmployeeApp.pdb
+D:\office\C#\1-09-2026\EmployeeApp\obj\Debug\net8.0\EmployeeApp.genruntimeconfig.cache
+D:\office\C#\1-09-2026\EmployeeApp\obj\Debug\net8.0\ref\EmployeeApp.dll
