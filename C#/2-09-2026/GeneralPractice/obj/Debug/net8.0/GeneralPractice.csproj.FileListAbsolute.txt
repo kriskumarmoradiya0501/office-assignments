@@ -1,0 +1,15 @@
+D:\office\C#\2-09-2026\GeneralPractice\bin\Debug\net8.0\GeneralPractice.exe
+D:\office\C#\2-09-2026\GeneralPractice\bin\Debug\net8.0\GeneralPractice.deps.json
+D:\office\C#\2-09-2026\GeneralPractice\bin\Debug\net8.0\GeneralPractice.runtimeconfig.json
+D:\office\C#\2-09-2026\GeneralPractice\bin\Debug\net8.0\GeneralPractice.dll
+D:\office\C#\2-09-2026\GeneralPractice\bin\Debug\net8.0\GeneralPractice.pdb
+D:\office\C#\2-09-2026\GeneralPractice\obj\Debug\net8.0\GeneralPractice.GeneratedMSBuildEditorConfig.editorconfig
+D:\office\C#\2-09-2026\GeneralPractice\obj\Debug\net8.0\GeneralPractice.AssemblyInfoInputs.cache
+D:\office\C#\2-09-2026\GeneralPractice\obj\Debug\net8.0\GeneralPractice.AssemblyInfo.cs
+D:\office\C#\2-09-2026\GeneralPractice\obj\Debug\net8.0\GeneralPractice.csproj.CoreCompileInputs.cache
+D:\office\C#\2-09-2026\GeneralPractice\obj\Debug\net8.0\GeneralPractice.sourcelink.json
+D:\office\C#\2-09-2026\GeneralPractice\obj\Debug\net8.0\GeneralPractice.dll
+D:\office\C#\2-09-2026\GeneralPractice\obj\Debug\net8.0\refint\GeneralPractice.dll
+D:\office\C#\2-09-2026\GeneralPractice\obj\Debug\net8.0\GeneralPractice.pdb
+D:\office\C#\2-09-2026\GeneralPractice\obj\Debug\net8.0\GeneralPractice.genruntimeconfig.cache
+D:\office\C#\2-09-2026\GeneralPractice\obj\Debug\net8.0\ref\GeneralPractice.dll
