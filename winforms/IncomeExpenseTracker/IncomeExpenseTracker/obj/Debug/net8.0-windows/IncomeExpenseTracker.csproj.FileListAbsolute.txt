@@ -1,0 +1,15 @@
+d:\office\winforms\IncomeExpenseTracker\IncomeExpenseTracker\bin\Debug\net8.0-windows\IncomeExpenseTracker.exe
+d:\office\winforms\IncomeExpenseTracker\IncomeExpenseTracker\bin\Debug\net8.0-windows\IncomeExpenseTracker.deps.json
+d:\office\winforms\IncomeExpenseTracker\IncomeExpenseTracker\bin\Debug\net8.0-windows\IncomeExpenseTracker.runtimeconfig.json
+d:\office\winforms\IncomeExpenseTracker\IncomeExpenseTracker\bin\Debug\net8.0-windows\IncomeExpenseTracker.dll
+d:\office\winforms\IncomeExpenseTracker\IncomeExpenseTracker\bin\Debug\net8.0-windows\IncomeExpenseTracker.pdb
+d:\office\winforms\IncomeExpenseTracker\IncomeExpenseTracker\obj\Debug\net8.0-windows\IncomeExpenseTracker.GeneratedMSBuildEditorConfig.editorconfig
+d:\office\winforms\IncomeExpenseTracker\IncomeExpenseTracker\obj\Debug\net8.0-windows\IncomeExpenseTracker.AssemblyInfoInputs.cache
+d:\office\winforms\IncomeExpenseTracker\IncomeExpenseTracker\obj\Debug\net8.0-windows\IncomeExpenseTracker.AssemblyInfo.cs
+d:\office\winforms\IncomeExpenseTracker\IncomeExpenseTracker\obj\Debug\net8.0-windows\IncomeExpenseTracker.csproj.CoreCompileInputs.cache
+d:\office\winforms\IncomeExpenseTracker\IncomeExpenseTracker\obj\Debug\net8.0-windows\IncomeExpenseTracker.sourcelink.json
+d:\office\winforms\IncomeExpenseTracker\IncomeExpenseTracker\obj\Debug\net8.0-windows\IncomeExpenseTracker.dll
+d:\office\winforms\IncomeExpenseTracker\IncomeExpenseTracker\obj\Debug\net8.0-windows\refint\IncomeExpenseTracker.dll
+d:\office\winforms\IncomeExpenseTracker\IncomeExpenseTracker\obj\Debug\net8.0-windows\IncomeExpenseTracker.pdb
+d:\office\winforms\IncomeExpenseTracker\IncomeExpenseTracker\obj\Debug\net8.0-windows\IncomeExpenseTracker.genruntimeconfig.cache
+d:\office\winforms\IncomeExpenseTracker\IncomeExpenseTracker\obj\Debug\net8.0-windows\ref\IncomeExpenseTracker.dll

@@ -1,0 +1,12 @@
+D:\dot net\Set1\Set1\bin\Debug\Set1.exe.config
+D:\dot net\Set1\Set1\bin\Debug\Set1.exe
+D:\dot net\Set1\Set1\bin\Debug\Set1.pdb
+D:\dot net\Set1\Set1\obj\Debug\Set1.csproj.AssemblyReference.cache
+D:\dot net\Set1\Set1\obj\Debug\Set1.Form1.resources
+D:\dot net\Set1\Set1\obj\Debug\Set1.Properties.Resources.resources
+D:\dot net\Set1\Set1\obj\Debug\Set1.csproj.GenerateResource.cache
+D:\dot net\Set1\Set1\obj\Debug\Set1.csproj.CoreCompileInputs.cache
+D:\dot net\Set1\Set1\obj\Debug\Set1.exe
+D:\dot net\Set1\Set1\obj\Debug\Set1.pdb
+D:\office\Material\C#\linq\Set1\set1\set1\obj\Debug\Set1.exe
+D:\office\Material\C#\linq\Set1\set1\set1\obj\Debug\Set1.pdb

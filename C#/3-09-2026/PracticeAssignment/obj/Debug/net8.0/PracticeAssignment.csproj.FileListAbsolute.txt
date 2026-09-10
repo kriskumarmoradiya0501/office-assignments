@@ -1,0 +1,15 @@
+D:\office\C#\3-09-2026\PracticeAssignment\bin\Debug\net8.0\PracticeAssignment.exe
+D:\office\C#\3-09-2026\PracticeAssignment\bin\Debug\net8.0\PracticeAssignment.deps.json
+D:\office\C#\3-09-2026\PracticeAssignment\bin\Debug\net8.0\PracticeAssignment.runtimeconfig.json
+D:\office\C#\3-09-2026\PracticeAssignment\bin\Debug\net8.0\PracticeAssignment.dll
+D:\office\C#\3-09-2026\PracticeAssignment\bin\Debug\net8.0\PracticeAssignment.pdb
+D:\office\C#\3-09-2026\PracticeAssignment\obj\Debug\net8.0\PracticeAssignment.GeneratedMSBuildEditorConfig.editorconfig
+D:\office\C#\3-09-2026\PracticeAssignment\obj\Debug\net8.0\PracticeAssignment.AssemblyInfoInputs.cache
+D:\office\C#\3-09-2026\PracticeAssignment\obj\Debug\net8.0\PracticeAssignment.AssemblyInfo.cs
+D:\office\C#\3-09-2026\PracticeAssignment\obj\Debug\net8.0\PracticeAssignment.csproj.CoreCompileInputs.cache
+D:\office\C#\3-09-2026\PracticeAssignment\obj\Debug\net8.0\PracticeAssignment.sourcelink.json
+D:\office\C#\3-09-2026\PracticeAssignment\obj\Debug\net8.0\PracticeAssignment.dll
+D:\office\C#\3-09-2026\PracticeAssignment\obj\Debug\net8.0\refint\PracticeAssignment.dll
+D:\office\C#\3-09-2026\PracticeAssignment\obj\Debug\net8.0\PracticeAssignment.pdb
+D:\office\C#\3-09-2026\PracticeAssignment\obj\Debug\net8.0\PracticeAssignment.genruntimeconfig.cache
+D:\office\C#\3-09-2026\PracticeAssignment\obj\Debug\net8.0\ref\PracticeAssignment.dll

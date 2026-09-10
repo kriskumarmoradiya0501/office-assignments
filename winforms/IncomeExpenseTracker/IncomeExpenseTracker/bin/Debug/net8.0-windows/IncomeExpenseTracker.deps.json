@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "IncomeExpenseTracker/1.0.0": {
+        "runtime": {
+          "IncomeExpenseTracker.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "IncomeExpenseTracker/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
