@@ -1,0 +1,464 @@
+@model IEnumerable<Intern.Models.InterClass>
+
+@{
+    ViewData["Title"] = "Intern Management";
+    Layout = "_Layout";
+}
+
+<!-- SweetAlert2 (page-specific) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<style>
+    /* Page title row */
+    .page-title-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid #e9ecef;
+    }
+    .page-title-row h4 {
+        margin: 0;
+        font-weight: 600;
+        color: #343a40;
+    }
+
+    /* Table */
+    #internTable thead th {
+        background-color: #f1f3f5;
+        font-size: 0.82rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #6c757d;
+        border-top: none;
+    }
+    #internTable tbody td {
+        vertical-align: middle;
+        font-size: 0.9rem;
+        color: #495057;
+    }
+    #internTable tbody tr:hover {
+        background-color: #f8f9fa;
+    }
+    .status-pill {
+        display: inline-block;
+        padding: 3px 10px;
+        border-radius: 12px;
+        font-size: 0.78rem;
+        font-weight: 600;
+    }
+    .status-yes { background: #d4edda; color: #155724; }
+    .status-no  { background: #f8d7da; color: #721c24; }
+
+    /* Validation error text */
+    label.error {
+        color: #dc3545;
+        font-size: 0.8rem;
+        margin-top: 4px;
+        display: block;
+    }
+    input.error, select.error { border-color: #dc3545; }
+
+    /* Image preview */
+    #TopicImagePreview {
+        max-width: 180px;
+        max-height: 160px;
+        border-radius: 6px;
+        border: 1px solid #dee2e6;
+        margin-top: 8px;
+        display: none;
+    }
+</style>
+
+
+<!-- Page title + Add button -->
+<div class="page-title-row">
+    <h4>Intern Management</h4>
+    <button class="btn btn-primary" id="addInternBtn">Add New Intern</button>
+</div>
+
+
+<!-- Interns table -->
+<div class="table-responsive">
+    <table class="table table-bordered table-hover" id="internTable">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Topic</th>
+                <th>Presentation Date</th>
+                <th>Status</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- loaded via AJAX -->
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Add / Edit Modal -->
+<div class="modal fade" id="internModal" tabindex="-1" aria-labelledby="internModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="internModalLabel">Intern Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <!-- NOTE: Save button is INSIDE the form so jQuery Validate works correctly -->
+                <form id="internForm" enctype="multipart/form-data" novalidate>
+                    <input type="hidden" id="InternId" name="InternId" />
+
+                    <!-- Name -->
+                    <div class="mb-3">
+                        <label for="InternName" class="form-label fw-semibold">Intern Name</label>
+                        <input type="text" class="form-control" id="InternName" name="InternName"
+                               placeholder="Enter full name" />
+                    </div>
+
+                    <!-- Gender -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Gender</label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="Gender" id="genderMale" value="M" />
+                                <label class="form-check-label" for="genderMale">Male</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="Gender" id="genderFemale" value="F" />
+                                <label class="form-check-label" for="genderFemale">Female</label>
+                            </div>
+                        </div>
+                        <!-- Gender error lands here -->
+                        <label id="Gender-error" class="error" for="genderMale" style="display:none;"></label>
+                    </div>
+
+                    <!-- Topic -->
+                    <div class="mb-3">
+                        <label for="TopicId" class="form-label fw-semibold">Topic</label>
+                        <select class="form-select" id="TopicId" name="TopicId">
+                            <option value="">-- Select a topic --</option>
+                            @foreach (var topic in ViewBag.Topics)
+                            {
+                                <option value="@topic.TopicId">@topic.TopicName</option>
+                            }
+                        </select>
+                    </div>
+
+                    <!-- Date -->
+                    <div class="mb-3">
+                        <label for="DateOfPresentation" class="form-label fw-semibold">Date of Presentation</label>
+                        <input type="date" class="form-control" id="DateOfPresentation" name="DateOfPresentation" />
+                    </div>
+
+                    <!-- Status -->
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="Status" name="Status" value="true" />
+                            <label class="form-check-label" for="Status">Presented</label>
+                        </div>
+                    </div>
+
+                    <!-- Image Upload -->
+                    <div class="mb-3">
+                        <label for="TopicImageFile" class="form-label fw-semibold">Topic Image</label>
+                        <input type="file" class="form-control" id="TopicImageFile" name="TopicImageFile"
+                               accept="image/*" />
+                        <small class="text-muted">Accepted: jpg, png, gif, webp — max 5 MB</small>
+                    </div>
+
+                    <!-- Current image preview (Edit mode) -->
+                    <div class="mb-3" id="previewBox" style="display:none;">
+                        <label class="form-label fw-semibold">Current Image</label><br />
+                        <img id="TopicImagePreview" src="" alt="Current topic image" />
+                    </div>
+
+                    <!-- Footer buttons inside the form -->
+                    <div class="d-flex justify-content-end gap-2 mt-3 pt-2 border-top">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+<!-- jQuery Validate plugin (must load AFTER jQuery which is already in _Layout) -->
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.20.0/dist/jquery.validate.min.js"></script>
+
+<script>
+$(document).ready(function () {
+
+    // ── Helpers ──────────────────────────────────────────────────────────────
+
+    // Custom rule: allowed file size
+    $.validator.addMethod('maxfilesize', function (value, element, param) {
+        if (element.files && element.files.length > 0) {
+            return element.files[0].size <= param;
+        }
+        return true; // no file = OK
+    }, 'File must be under 5 MB.');
+
+    // Custom rule: allowed extensions
+    $.validator.addMethod('fileextension', function (value, element, param) {
+        if (!value) return true; // no file = OK
+        const ext = value.split('.').pop().toLowerCase();
+        return param.indexOf(ext) !== -1;
+    }, 'Only image files are allowed (jpg, png, gif, webp).');
+
+    function initValidation() {
+        // Destroy old validator so rules apply fresh each time modal opens
+        const form = $('#internForm');
+        if (form.data('validator')) {
+            form.removeData('validator').removeData('unobtrusiveValidation');
+        }
+
+        form.validate({
+            // Where to show error messages for radio / select
+            @* errorPlacement: function (error, element) {
+                if (element.attr('name') === 'Gender') {
+                    // Place gender error after the last radio label
+                    error.attr('id', 'Gender-error').attr('for', 'genderMale');
+                    $('#Gender-error').replaceWith(error);
+                } else {
+                    // Default: right after the input
+                    error.insertAfter(element);
+                }
+            }, *@
+            highlight: function (element) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element) {
+                $(element).removeClass('is-invalid');
+            },
+            rules: {
+                InternName: {
+                    required: true,
+                    minlength: 2,
+                    maxlength: 100
+                },
+                Gender: {
+                    required: true
+                },
+                TopicId: {
+                    required: true
+                },
+                DateOfPresentation: {
+                    required: true,
+                    date: true
+                },
+                TopicImageFile: {
+                    fileextension: ['jpg','jpeg','png'],
+                    maxfilesize: 5242880  // 5 MB
+                }
+            },
+            messages: {
+                InternName: {
+                    required: 'Intern name is required.',
+                    minlength: 'Name must be at least 2 characters.',
+                    maxlength: 'Name cannot exceed 100 characters.'
+                },
+                Gender: {
+                    required: 'Please select a gender.'
+                },
+                TopicId: {
+                    required: 'Please select a topic.'
+                },
+                DateOfPresentation: {
+                    required: 'Presentation date is required.',
+                    date: 'Enter a valid date.'
+                },
+                TopicImageFile: {
+                    fileextension: 'Only jpg, png, gif, or webp files are allowed.',
+                    maxfilesize: 'File must be under 5 MB.'
+                }
+            },
+            // submitHandler fires only when ALL rules pass
+            submitHandler: function () {
+                submitForm();
+            }
+        });
+    }
+
+    function clearValidation() {
+        const form = $('#internForm');
+        form.find('.is-invalid').removeClass('is-invalid');
+        form.find('label.error').remove();
+        // Re-insert the static gender error placeholder
+        if ($('#Gender-error').length === 0) {
+            $('#genderOther').closest('div').parent().append(
+                '<label id="Gender-error" class="error" for="genderMale" style="display:none;"></label>'
+            );
+        }
+    }
+
+    // ── Load table ───────────────────────────────────────────────────────────
+
+    function LoadInterns() {
+        $.ajax({
+            url: '/AjaxIntern/GetAllInterns',
+            success: function (data) {
+                const tbody = $('#internTable tbody');
+                tbody.empty();
+
+                if (!data || data.length === 0) {
+                    tbody.append('<tr><td colspan="8" class="text-center text-muted py-4">No interns found.</td></tr>');
+                    return;
+                }
+
+                data.forEach(function (e) {
+                    const gender = e.gender === 'M' ? 'Male' :'Female';
+                    const statusBadge = e.status
+                        ? '<span class="status-pill status-yes">Presented</span>'
+                        : '<span class="status-pill status-no">Pending</span>';
+                    const imgCell = e.topicImage
+                        ? `<img src="/images/${e.topicImage}" alt="img" style="width:70px;height:52px;object-fit:cover;border-radius:4px;" />`
+                        : '<span class="text-muted" style="font-size:.8rem;">No image</span>';
+
+                    tbody.append(`<tr>
+                        <td>${e.internId}</td>
+                        <td>${e.internName}</td>
+                        <td>${gender}</td>
+                        <td>${e.assignedTopic ? e.assignedTopic.topicName : 'N/A'}</td>
+                        <td>${new Date(e.dateOfPresentation).toLocaleDateString('en-IN')}</td>
+                        <td>${statusBadge}</td>
+                        <td>${imgCell}</td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-primary edit-intern-btn me-1" data-id="${e.internId}">Edit</button>
+                            <button class="btn btn-sm btn-outline-danger delete-intern-btn" data-id="${e.internId}">Delete</button>
+                        </td>
+                    </tr>`);
+                });
+            },
+            error: function () {
+                Swal.fire('Error', 'Failed to load interns.', 'error');
+            }
+        });
+    }
+
+    LoadInterns();
+
+    // ── Add modal ────────────────────────────────────────────────────────────
+
+    $('#addInternBtn').on('click', function () {
+        $('#internForm')[0].reset();
+        $('#InternId').val('');
+        $('#previewBox').hide();
+        $('#TopicImagePreview').attr('src', '').hide();
+        $('#internModalLabel').text('Add New Intern');
+        clearValidation();
+        initValidation();
+        bootstrap.Modal.getOrCreateInstance('#internModal').show();
+    });
+
+    // ── Edit modal ───────────────────────────────────────────────────────────
+
+    $(document).on('click', '.edit-intern-btn', function () {
+        const id = $(this).data('id');
+        $('#internForm')[0].reset();
+        clearValidation();
+
+        $.ajax({
+            url: '/AjaxIntern/GetInternDetails',
+            data: { id: id },
+            success: function (intern) {
+                $('#InternId').val(intern.internId);
+                $('#InternName').val(intern.internName);
+                $('input[name="Gender"][value="' + intern.gender + '"]').prop('checked', true);
+                $('#TopicId').val(intern.topicId);
+                $('#DateOfPresentation').val(new Date(intern.dateOfPresentation).toISOString().split('T')[0]);
+                $('#Status').prop('checked', intern.status);
+
+                if (intern.topicImage) {
+                    $('#TopicImagePreview').attr('src', '/images/' + intern.topicImage).show();
+                    $('#previewBox').show();
+                } else {
+                    $('#previewBox').hide();
+                    $('#TopicImagePreview').hide();
+                }
+
+                $('#internModalLabel').text('Edit Intern');
+                initValidation();
+                bootstrap.Modal.getOrCreateInstance('#internModal').show();
+            },
+            error: function () {
+                Swal.fire('Error', 'Could not load intern details.', 'error');
+            }
+        });
+    });
+
+    // ── Submit (called by jQuery Validate submitHandler ONLY when valid) ──────
+
+    function submitForm() {
+        const formData = new FormData($('#internForm')[0]);
+        const url = $('#InternId').val() ? '/AjaxIntern/UpdateIntern' : '/AjaxIntern/AddIntern';
+
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                if (response.success) {
+                    bootstrap.Modal.getInstance('#internModal')?.hide();
+                    LoadInterns();
+                    Swal.fire({ icon: 'success', title: 'Success', text: response.message, timer: 2000, showConfirmButton: false });
+                } else {
+                    Swal.fire('Error', response.message, 'error');
+                }
+            },
+            error: function () {
+                Swal.fire('Error', 'Something went wrong. Please try again.', 'error');
+            }
+        });
+    }
+
+    // ── Delete ───────────────────────────────────────────────────────────────
+
+    $(document).on('click', '.delete-intern-btn', function () {
+        const id = $(this).data('id');
+        Swal.fire({
+            title: 'Delete Intern?',
+            text: 'This action cannot be undone.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#dc3545',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Delete',
+            cancelButtonText: 'Cancel'
+        }).then(function (result) {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/AjaxIntern/DeleteIntern',
+                    data: { id: id },
+                    success: function (response) {
+                        if (response.success) {
+                            LoadInterns();
+                            Swal.fire({ icon: 'success', title: 'Deleted', text: response.message, timer: 2000, showConfirmButton: false });
+                        } else {
+                            Swal.fire('Error', response.message, 'error');
+                        }
+                    }
+                });
+            }
+        });
+    });
+
+});
+</script>
+}

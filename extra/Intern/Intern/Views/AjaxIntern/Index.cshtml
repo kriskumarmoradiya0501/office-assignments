@@ -1,0 +1,418 @@
+@model IEnumerable<Intern.Models.InterClass>
+
+
+@{
+    ViewData["Title"] = "Intern Management";
+    Layout = "_Layout";
+}
+
+
+<!-- Include Bootstrap and jQuery libraries -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- Include SweetAlert2 libraries -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<style>
+    /* Page title row */
+    .page-title-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid #e9ecef;
+    }
+    .page-title-row h4 {
+        margin: 0;
+        font-weight: 600;
+        color: #343a40;
+    }
+
+    /* Table */
+    #internTable thead th {
+        background-color: #f1f3f5;
+        font-size: 0.82rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #6c757d;
+        border-top: none;
+    }
+    #internTable tbody td {
+        vertical-align: middle;
+        font-size: 0.9rem;
+        color: #495057;
+    }
+    #internTable tbody tr:hover {
+        background-color: #f8f9fa;
+    }
+    .status-pill {
+        display: inline-block;
+        padding: 3px 10px;
+        border-radius: 12px;
+        font-size: 0.78rem;
+        font-weight: 600;
+    }
+    .status-yes { background: #d4edda; color: #155724; }
+    .status-no  { background: #f8d7da; color: #721c24; }
+
+    /* Validation error text */
+    label.error {
+        color: #dc3545;
+        font-size: 0.8rem;
+        margin-top: 4px;
+        display: block;
+    }
+    input.error, select.error { border-color: #dc3545; }
+
+    /* Image preview */
+    #TopicImagePreview {
+        max-width: 180px;
+        max-height: 160px;
+        border-radius: 6px;
+        border: 1px solid #dee2e6;
+        margin-top: 8px;
+        display: none;
+    }
+</style>
+
+
+
+
+<h2> @ViewData["Title"]</h2>
+
+
+<!-- Alert Container -->
+<div id="alertContainer"></div>
+
+
+<!-- Button to open the modal for adding a new intern -->
+<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#internModal" id="addInternBtn">Add New Intern</button>
+
+
+<!-- Interns table -->
+<table class="table table-bordered" id="internTable">
+    <thead>
+        <tr>
+            <th>Intern Name</th>
+            <th>Gender</th>
+            <th>Topic</th>
+            <th>Date of Presentation</th>
+            <th>Status</th>
+            <th>Topic Image</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Intern data will be dynamically loaded via JavaScript/Ajax -->
+    </tbody>
+</table>
+
+
+<!-- Modal for adding/updating intern -->
+<div class="modal fade" id="internModal" tabindex="-1" role="dialog" aria-labelledby="internModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="internModalLabel">Intern Details</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="internForm" enctype="multipart/form-data">
+                    <input type="hidden" id="InternId" name="InternId" />
+
+
+                    <div class="form-group">
+                        <label for="InternName">Intern Name</label>
+                        <input type="text" class="form-control" id="InternName" name="InternName"  />
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Gender</label><br />
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="Gender" id="genderMale" value="M"
+                                required />
+                            <label class="form-check-label" for="genderMale">Male</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="Gender" id="genderFemale" value="F" />
+                            <label class="form-check-label" for="genderFemale">Female</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="Gender" id="genderOther" value="O" />
+                            <label class="form-check-label" for="genderOther">Other</label>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="TopicId">Topic</label>
+                        <select class="form-control" id="TopicId" name="TopicId" required>
+                            <option value="">Select a topic</option>
+                            @foreach (var topic in ViewBag.Topics)
+                            {
+                                <option value="@topic.TopicId">@topic.TopicName</option>
+                            }
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="DateOfPresentation">Date of Presentation</label>
+                        <input type="date" class="form-control" id="DateOfPresentation" name="DateOfPresentation"
+                            required />
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="Status" name="Status" value="true" />
+                            <label class="form-check-label" for="Status">Presentation Status</label>
+                        </div>
+                    </div>
+
+
+                    <!-- File Upload for Topic Image -->
+                    <div class="form-group">
+                        <label for="TopicImageFile">Topic Image</label>
+                        <input type="file" class="form-control-file" id="TopicImageFile" name="TopicImageFile" />
+                    </div>
+
+
+                    <!-- Display Existing Image if Available -->
+                    <div class="form-group">
+                        <label>Current Topic Image</label><br />
+                        <img id="TopicImagePreview" src="" alt="No Image" class="img-thumbnail"
+                            style="max-width: 200px; max-height: 200px; display:none;" />
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- JavaScript to handle CRUD operations -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+
+<script>
+   
+    $(document).ready(function () {
+
+
+        // Initial load of interns
+        LoadInterns();
+
+
+        // Load all interns on page load
+        function LoadInterns() {
+            $.ajax({
+                url: '/AjaxIntern/GetAllInterns',
+                success: function (data) {
+                    const tbody = $('#internTable tbody');
+                    tbody.empty();
+                    data.map(e => {
+                        tbody.append(`<tr data-id="${e.internId}">
+                            <td>${e.internName}</td>
+                            <td>${e.gender === "M" ? "Male" : e.gender === "F" ? "Female" : "Other"}</td>
+                            <td>${e.assignedTopic?.topicName || 'N/A'}</td>
+                            <td>${new Date(e.dateOfPresentation).toLocaleDateString()}</td>
+                            <td>${e.status ? "Presented" : "Not Presented"}</td>
+                            <td>${e.topicImage ? `<img src="/images/${e.topicImage}" alt="Topic Image" style="width:100px;height:auto;" />` : 'No image available'}</td>
+                            <td>
+                                <button class="btn btn-info btn-sm edit-intern-btn" data-id="${e.internId}">Edit</button>
+                                <button class="btn btn-danger btn-sm delete-intern-btn" data-id="${e.internId}">Delete</button>
+                            </td>
+                        </tr>`);
+                    });
+                }
+            });
+        }
+ // Open Add Intern Modal
+        $('#addInternBtn').click(function () {
+            $('#internForm')[0].reset();
+            $('#InternId').val(''); // Important hidden InternId field.
+             $('#TopicImagePreview').hide();              
+           
+            $('#internModalLabel').text('Add New Intern');
+            $('#internModal').modal('show');
+        });
+
+
+         // Edit Intern (Open Modal with Data)
+        $(document).on('click', '.edit-intern-btn', function () {
+            let id = $(this).data('id');
+            $.ajax({
+                url: '/AjaxIntern/GetInternDetails',
+                data: { id: id },
+                success: function (intern) {
+                    $('#InternId').val(intern.internId??0);
+                    $('#InternName').val(intern.internName);
+                    $(`input[name="Gender"][value="${intern.gender}"]`).prop('checked', true);
+                    $('#TopicId').val(intern.topicId);
+                    $('#DateOfPresentation').val(new Date(intern.dateOfPresentation).toISOString().split('T')[0]);
+                    $('#Status').prop('checked', intern.status);
+
+
+                    if (intern.topicImage) {
+                        $('#TopicImagePreview').attr('src','/images/' + intern.topicImage).show();
+                    } else {
+                        $('#TopicImagePreview').hide();
+                    }
+
+
+                    $('#internModalLabel').text('Edit Intern');
+                    $('#internModal').modal('show');
+                }
+            });
+        });
+
+
+
+
+       
+
+
+        // Submit Intern Form (Add or Update)
+        $('#internForm').submit(function (event) {
+            event.preventDefault();
+           
+             @* let formData = new FormData(this);   //HTML inputs must have name automatically collects:InternId,InternName,Gender,TopicId,DateOfPresentation,Status,TopicImageFile *@
+             let formData = new FormData($('#internForm')[0]); // OR So [0] uses array-style indexing to access the first selected DOM elementof Form1 ,[1] for Form2
+           
+           
+            @* let formData = new FormData();
+
+
+            // You need to append additional fields manually to FormData
+            formData.append("InternId", ($('#InternId').val()) ? $('#InternId').val() : 0);
+            formData.append("InternName", $('#InternName').val());
+            formData.append("Gender", $("input[name='Gender']:checked").val());
+            formData.append("TopicId", $('#TopicId').val());
+            formData.append("DateOfPresentation", $('#DateOfPresentation').val());
+            formData.append("Status", $('#Status').is(':checked'));
+
+
+            // Check if there's a file before appending
+            let fileInput = $('#TopicImageFile')[0];
+            if (fileInput.files.length > 0) {
+                formData.append("TopicImageFile", fileInput.files[0]);
+            } *@
+
+
+            let url = $('#InternId').val() ? '/AjaxIntern/UpdateIntern' : '/AjaxIntern/AddIntern';
+
+
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    if (response.success) {
+                        $('#internModal').modal('hide');
+                        LoadInterns();
+                        ShowAlert(response.message, 'success');
+                    } else {
+                        ShowAlert(response.message, 'danger');
+                    }
+                }
+            });
+        });
+
+
+
+
+       
+        // Delete Intern
+        @* $(document).on('click', '.delete-intern-btn', function () {
+            if (confirm('Are you sure you want to delete this intern?')) {
+                let id = $(this).data('id');
+                $.ajax({
+                    type: 'POST',
+                    url: '/AjaxIntern/DeleteIntern',
+                    data: { id: id },
+                    success: function (response) {
+                        if (response.success) {
+                            LoadInterns();
+                            ShowAlert(response.message, 'success');
+                        }
+                    }
+                });
+            }
+        }); *@
+
+
+            $(document).on('click', '.delete-intern-btn', function () {
+                let id = $(this).data('id');
+
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'This action cannot be undone!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: 'POST',
+                            url: '/AjaxIntern/DeleteIntern',
+                            data: { id: id },
+                            success: function (response) {
+                                if (response.success) {
+                                    LoadInterns();
+                                    Swal.fire('Deleted!', response.message, 'success');
+                                } else {
+                                    Swal.fire('Error!', response.message, 'error');
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+
+
+
+
+        // Helper function to show alert messages
+        @* function ShowAlert(message, type) {
+            const alertHtml = `<div class="alert alert-${type}" role="alert">${message}</div>`;
+            $('#alertContainer').html(alertHtml);
+            setTimeout(() => $('#alertContainer').html(''), 3000);
+        } *@
+
+
+            function ShowAlert(message, type) {
+                Swal.fire({
+                    title: type === 'success' ? 'Success!' : 'Error!',
+                    text: message,
+                    icon: type,
+                    confirmButtonText: 'OK'
+                });
+            }
+
+
+
+
+
+
+    });
+</script>

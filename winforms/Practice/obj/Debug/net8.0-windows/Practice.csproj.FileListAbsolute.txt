@@ -4,6 +4,11 @@ D:\office\winforms\Practice\bin\Debug\net8.0-windows\Practice.runtimeconfig.json
 D:\office\winforms\Practice\bin\Debug\net8.0-windows\Practice.dll
 D:\office\winforms\Practice\bin\Debug\net8.0-windows\Practice.pdb
 D:\office\winforms\Practice\obj\Debug\net8.0-windows\Practice.Form1.resources
+D:\office\winforms\Practice\obj\Debug\net8.0-windows\Practice.Form2.resources
+D:\office\winforms\Practice\obj\Debug\net8.0-windows\Practice.Form3.resources
+D:\office\winforms\Practice\obj\Debug\net8.0-windows\Practice.FrmPassingDataOneToOther1.resources
+D:\office\winforms\Practice\obj\Debug\net8.0-windows\Practice.FrmPassingDataOneToOther2.resources
+D:\office\winforms\Practice\obj\Debug\net8.0-windows\Practice.FrmStudentForm.resources
 D:\office\winforms\Practice\obj\Debug\net8.0-windows\Practice.csproj.GenerateResource.cache
 D:\office\winforms\Practice\obj\Debug\net8.0-windows\Practice.GeneratedMSBuildEditorConfig.editorconfig
 D:\office\winforms\Practice\obj\Debug\net8.0-windows\Practice.AssemblyInfoInputs.cache
@@ -15,8 +20,3 @@ D:\office\winforms\Practice\obj\Debug\net8.0-windows\refint\Practice.dll
 D:\office\winforms\Practice\obj\Debug\net8.0-windows\Practice.pdb
 D:\office\winforms\Practice\obj\Debug\net8.0-windows\Practice.genruntimeconfig.cache
 D:\office\winforms\Practice\obj\Debug\net8.0-windows\ref\Practice.dll
-D:\office\winforms\Practice\obj\Debug\net8.0-windows\Practice.Form2.resources
-D:\office\winforms\Practice\obj\Debug\net8.0-windows\Practice.Form3.resources
-D:\office\winforms\Practice\obj\Debug\net8.0-windows\Practice.FrmPassingDataOneToOther1.resources
-D:\office\winforms\Practice\obj\Debug\net8.0-windows\Practice.FrmPassingDataOneToOther2.resources
-D:\office\winforms\Practice\obj\Debug\net8.0-windows\Practice.FrmStudentForm.resources

@@ -1,0 +1,13 @@
+.navbar-brand {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.navbar-nav .nav-link {
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+main {
+    min-height: 70vh;
+}

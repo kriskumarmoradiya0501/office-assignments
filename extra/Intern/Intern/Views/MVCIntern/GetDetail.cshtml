@@ -1,0 +1,33 @@
+@model InterClass
+@{
+    ViewData["Title"] = "Intern Details";
+}
+
+<h1>Intern details</h1>
+<dl class="row mt-3">
+    <dt class="col-sm-3">ID</dt>
+    <dd class="col-sm-9">@Model.InternId</dd>
+    <dt class="col-sm-3">Name</dt>
+    <dd class="col-sm-9">@Model.InternName</dd>
+    <dt class="col-sm-3">Gender</dt>
+    <dd class="col-sm-9">@(Model.Gender == "M" ? "Male" : "Female")</dd>
+    <dt class="col-sm-3">Topic</dt>
+    <dd class="col-sm-9">@(Model.AssignedTopic?.TopicName ?? "N/A")</dd>
+    <dt class="col-sm-3">Presentation date</dt>
+    <dd class="col-sm-9">@(Model.DateOfPresentation?.ToShortDateString() ?? "Not provided")</dd>
+    <dt class="col-sm-3">Status</dt>
+    <dd class="col-sm-9">@(Model.Status ? "Presented" : "Not presented")</dd>
+    <dt class="col-sm-3">Image</dt>
+    <dd class="col-sm-9">
+        @if (!string.IsNullOrWhiteSpace(Model.TopicImage))
+        {
+            <img src="~/images/@Model.TopicImage" alt="Topic image" class="img-thumbnail" style="max-width: 200px;" />
+        }
+        else
+        {
+            <span>No image available</span>
+        }
+    </dd>
+</dl>
+<a asp-action="Update" asp-route-id="@Model.InternId" class="btn btn-warning">Edit</a>
+<a asp-action="GetAll" class="btn btn-secondary">Back to list</a>

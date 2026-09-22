@@ -1,0 +1,25 @@
+@model InternHelper.Models.Topic
+
+<div class="container mt-4">
+    <h2>Edit Topic</h2>
+
+    <div class="card shadow-sm mt-3">
+        <div class="card-body">
+            <form method="post">
+                <input type="hidden" name="TopicId" value="@Model.TopicId">
+
+                <div class="mb-3">
+                    <label class="from-label">Topic Name</label>
+
+                    <input type="text" name="TopicName" value="@Model.TopicName" class="form-control">
+
+                </div>
+
+                <button class="btn btn-primary" type="submit"> Update </button>
+
+                <a asp-action="Index" class="btn btn-secondary"> Cancel </a>
+
+            </form>
+        </div>
+    </div>
+</div>

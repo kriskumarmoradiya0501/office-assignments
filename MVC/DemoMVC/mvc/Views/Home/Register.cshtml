@@ -1,0 +1,79 @@
+﻿@model Repositories.t_User
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h2>Register</h2>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.Message
+    </div>
+}
+
+<form asp-action="Register" method="post">
+
+    <div class="mb-3">
+        <label asp-for="c_username" class="form-label"></label>
+        <input asp-for="c_username" class="form-control" />
+        <span asp-validation-for="c_username" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="c_email" class="form-label"></label>
+        <input asp-for="c_email" class="form-control" />
+        <span asp-validation-for="c_email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="c_password" class="form-label"></label>
+        <input asp-for="c_password" type="password" class="form-control" />
+        <span asp-validation-for="c_password" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="c_c_password" class="form-label"></label>
+        <input asp-for="c_c_password" type="password" class="form-control" />
+        <span asp-validation-for="c_c_password" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="c_address" class="form-label"></label>
+        <textarea asp-for="c_address" class="form-control"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="c_mobile" class="form-label"></label>
+        <input asp-for="c_mobile" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Gender</label>
+
+        <div>
+            <input type="radio" asp-for="c_gender" value="Male" />
+            <label>Male</label>
+
+            <input type="radio" asp-for="c_gender" value="Female" />
+            <label>Female</label>
+
+            <input type="radio" asp-for="c_gender" value="Other" />
+            <label>Other</label>
+        </div>
+
+        <span asp-validation-for="c_gender" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Register
+    </button>
+
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

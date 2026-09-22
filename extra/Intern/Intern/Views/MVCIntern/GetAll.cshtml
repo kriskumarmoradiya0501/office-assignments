@@ -1,0 +1,61 @@
+@model IEnumerable<InterClass>
+@{
+    ViewData["Title"] = "Interns";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Interns</h1>
+    <a asp-action="Insert" class="btn btn-primary">Add intern</a>
+</div>
+
+@if (TempData["SuccessMessage"] is string message)
+{
+    <div class="alert alert-success" role="alert">@message</div>
+}
+
+<div class="table-responsive">
+    <table class="table table-striped align-middle">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Topic</th>
+                <th>Presentation date</th>
+                <th>Status</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var intern in Model)
+        {
+            <tr>
+                <td>@intern.InternId</td>
+                <td>@intern.InternName</td>
+                <td>@(intern.Gender == "M" ? "Male" : "Female")</td>
+                <td>@intern.AssignedTopic?.TopicName</td>
+                <td>@(intern.DateOfPresentation?.ToShortDateString() ?? "Not provided")</td>
+                <td>@(intern.Status ? "Presented" : "Not presented")</td>
+                <td>
+                    @if (!string.IsNullOrWhiteSpace(intern.TopicImage))
+                    {
+                        <img src="~/images/@intern.TopicImage" alt="Topic image" style="width: 80px; height: 60px; object-fit: cover;" />
+                    }
+                    else
+                    {
+                        <span>No image</span>
+                    }
+                </td>
+                <td>
+                    <div class="d-flex gap-2">
+                        <a asp-action="GetDetail" asp-route-id="@intern.InternId" class="btn btn-sm btn-info">Details</a>
+                        <a asp-action="Update" asp-route-id="@intern.InternId" class="btn btn-sm btn-warning">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@intern.InternId" class="btn btn-sm btn-danger">Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

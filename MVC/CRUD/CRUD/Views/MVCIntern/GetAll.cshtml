@@ -1,0 +1,230 @@
+@model IEnumerable<Crud_Ajax.Models.InternClass>
+@{
+    ViewData["Title"] = "Interns List";
+}
+@* Legacy CDN includes are disabled because _Layout already loads Bootstrap 5 and jQuery. *@
+@* <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> *@
+@* <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> *@
+@* <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> *@
+@* <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> *@
+@* @if (TempData["SuccessMessage"] != null)
+{
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: '@TempData["SuccessMessage"]',
+            timer: 3000,
+            showConfirmButton: false
+        });
+    </script>
+} *@
+
+@* @if (TempData["SuccessMessage"] != null)
+{
+    <div id="alertMessage" class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+} *@
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div id="statusMessage" class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+    <script>
+        setTimeout(function () {
+            var messageDiv = document.getElementById('statusMessage');
+            if (messageDiv) {
+                messageDiv.style.display = 'none';
+            }
+        }, 3000);
+    </script>
+}
+
+<h1>@ViewData["Title"]</h1>
+<div id="ajaxMessage" class="alert" hidden></div>
+<button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#addInternModal">
+    Add New Intern
+</button>
+@* Older version: <a asp-action="Insert" class="btn btn-success mb-3">Add New Intern</a> *@
+<table class="table">
+    <thead>
+        <tr>
+            <th>Intern ID</th>
+            <th>Intern Name</th>
+            <th>Gender</th>
+            <th>Assigned Topic</th>
+            <th>Date of Presentation</th>
+            <th>Presentation Status</th>
+            <th>Topic Image</th> <!-- New column for Topic Image -->
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var intern in Model)
+        {
+            <tr>
+                <td>@intern.InternId</td>
+                <td>@intern.InternName</td>
+                <td>@(intern.Gender == "M" ? "Male" : "Female")</td>
+                <td>@intern.AssignedTopic?.TopicName</td>
+                <td>@intern.DateOfPresentation.ToShortDateString()</td>
+                <td>@(intern.Status ? "Presented" : "Not Presented")</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(intern.TopicImage))
+                    {
+                        <img src="@Url.Content("~/images/" + intern.TopicImage)" alt="Topic Image" style="width:100px; height:auto;" />
+                    }
+                    else
+                    {
+                        <span>No Image</span>
+                    }
+                </td>
+                <td>
+                    <div class="d-flex gap-2">
+                        <button type="button" class="btn btn-info" data-ajax-detail-url="@Url.Action("GetDetailData", new { id = intern.InternId })" data-bs-toggle="modal" data-bs-target="#detailInternModal">Details</button>
+                        <button type="button" class="btn btn-warning" data-ajax-edit-url="@Url.Action("GetDetailData", new { id = intern.InternId })" data-ajax-update-url="@Url.Action("Update")" data-bs-toggle="modal" data-bs-target="#editInternModal">Edit</button>
+                        @* Older MVC pages, kept as fallback:
+                        <a asp-action="GetDetail" asp-route-id="@intern.InternId" class="btn btn-info">Details</a>
+                        <a asp-action="Update" asp-route-id="@intern.InternId" class="btn btn-warning">Edit</a> *@
+                        <button type="button" class="btn btn-danger" data-ajax-delete-url="@Url.Action("DeleteConfirmed", new { id = intern.InternId })">Delete</button>
+                        @* Older MVC delete page, kept as fallback:
+                        <a asp-action="Delete" asp-route-id="@intern.InternId" class="btn btn-danger">Delete</a> *@
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="modal fade" id="addInternModal" tabindex="-1" aria-labelledby="addInternModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title fs-5" id="addInternModalLabel">Add New Intern</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form asp-controller="MVCIntern" asp-action="Insert" method="post" enctype="multipart/form-data" data-ajax="true" data-ajax-modal="addInternModal">
+                <div class="modal-body">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="mb-3">
+                        <label for="modalInternName" class="form-label">Intern Name</label>
+                        <input id="modalInternName" name="InternName" class="form-control" required maxlength="100" />
+                        <span class="text-danger" data-valmsg-for="InternName"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label d-block">Gender</label>
+                        <label class="me-3"><input type="radio" name="Gender" value="M" required /> Male</label>
+                        <label><input type="radio" name="Gender" value="F" /> Female</label>
+                        <span class="text-danger d-block" data-valmsg-for="Gender"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="modalTopicId" class="form-label">Topic</label>
+                        <select id="modalTopicId" name="TopicId" class="form-select" required>
+                            <option value="">Select Topic</option>
+                            @foreach (var topic in ViewBag.Topics)
+                            {
+                                <option value="@topic.TopicId">@topic.TopicName</option>
+                            }
+                        </select>
+                        <span class="text-danger" data-valmsg-for="TopicId"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="modalPresentationDate" class="form-label">Date of Presentation</label>
+                        <input id="modalPresentationDate" name="DateOfPresentation" type="date" class="form-control" required />
+                        <span class="text-danger" data-valmsg-for="DateOfPresentation"></span>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input id="modalStatus" name="Status" value="true" type="checkbox" class="form-check-input" />
+                        <label for="modalStatus" class="form-check-label">Presentation completed</label>
+                    </div>
+                    <div>
+                        <label for="modalTopicImage" class="form-label">Topic Image</label>
+                        <input id="modalTopicImage" name="TopicImageFile" type="file" accept="image/*" class="form-control" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Intern</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="detailInternModal" tabindex="-1" aria-labelledby="detailInternModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title fs-5" id="detailInternModalLabel">Intern Details</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="detailInternContent">
+                Loading...
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editInternModal" tabindex="-1" aria-labelledby="editInternModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title fs-5" id="editInternModalLabel">Edit Intern</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="editInternForm" method="post" enctype="multipart/form-data" data-ajax="true" data-ajax-modal="editInternModal">
+                <div class="modal-body">
+                    <input type="hidden" name="InternId" id="editInternId" />
+                    <div class="mb-3">
+                        <label for="editInternName" class="form-label">Intern Name</label>
+                        <input id="editInternName" name="InternName" class="form-control" required maxlength="100" />
+                        <span class="text-danger" data-valmsg-for="InternName"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label d-block">Gender</label>
+                        <label class="me-3"><input type="radio" name="Gender" value="M" required /> Male</label>
+                        <label><input type="radio" name="Gender" value="F" /> Female</label>
+                        <span class="text-danger d-block" data-valmsg-for="Gender"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editTopicId" class="form-label">Topic</label>
+                        <select id="editTopicId" name="TopicId" class="form-select" required>
+                            @foreach (var topic in ViewBag.Topics)
+                            {
+                                <option value="@topic.TopicId">@topic.TopicName</option>
+                            }
+                        </select>
+                        <span class="text-danger" data-valmsg-for="TopicId"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editPresentationDate" class="form-label">Date of Presentation</label>
+                        <input id="editPresentationDate" name="DateOfPresentation" type="date" class="form-control" required />
+                    </div>
+                    <div class="form-check mb-3">
+                        <input id="editStatus" name="Status" value="true" type="checkbox" class="form-check-input" />
+                        <label for="editStatus" class="form-check-label">Presentation completed</label>
+                    </div>
+                    <div>
+                        <label for="editTopicImage" class="form-label">Replace Topic Image</label>
+                        <input id="editTopicImage" name="TopicImageFile" type="file" accept="image/*" class="form-control" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Timeout function to hide the alert after 3 seconds
+        setTimeout(function() {
+            $('#alertMessage').fadeOut('slow');
+        }, 3000); // 3000 milliseconds = 3 seconds
+    </script>
+}

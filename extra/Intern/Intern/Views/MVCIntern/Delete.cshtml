@@ -1,0 +1,19 @@
+@model InterClass
+@{
+    ViewData["Title"] = "Delete Intern";
+}
+
+<h1>Delete intern</h1>
+<div class="alert alert-warning">Are you sure you want to delete this intern?</div>
+<dl class="row">
+    <dt class="col-sm-3">ID</dt>
+    <dd class="col-sm-9">@Model.InternId</dd>
+    <dt class="col-sm-3">Name</dt>
+    <dd class="col-sm-9">@Model.InternName</dd>
+    <dt class="col-sm-3">Topic</dt>
+    <dd class="col-sm-9">@(Model.AssignedTopic?.TopicName ?? "N/A")</dd>
+</dl>
+<form asp-action="DeleteConfirmed" asp-route-id="@Model.InternId" method="post">
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="GetAll" class="btn btn-secondary">Cancel</a>
+</form>

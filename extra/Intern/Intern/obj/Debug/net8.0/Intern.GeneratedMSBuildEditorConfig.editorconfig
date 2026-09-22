@@ -1,0 +1,75 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Intern
+build_property.RootNamespace = Intern
+build_property.ProjectDir = D:\office\extra\Intern\Intern\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\office\extra\Intern\Intern
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/office/extra/Intern/Intern/Views/AjaxIntern/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWpheEludGVyblxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/office/extra/Intern/Intern/Views/AjaxIntern/Index2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWpheEludGVyblxJbmRleDIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/office/extra/Intern/Intern/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/office/extra/Intern/Intern/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/office/extra/Intern/Intern/Views/MVCIntern/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDSW50ZXJuXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/office/extra/Intern/Intern/Views/MVCIntern/GetAll.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDSW50ZXJuXEdldEFsbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/office/extra/Intern/Intern/Views/MVCIntern/GetDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDSW50ZXJuXEdldERldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/office/extra/Intern/Intern/Views/MVCIntern/Insert.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDSW50ZXJuXEluc2VydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/office/extra/Intern/Intern/Views/MVCIntern/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDSW50ZXJuXFVwZGF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/office/extra/Intern/Intern/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/office/extra/Intern/Intern/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/office/extra/Intern/Intern/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/office/extra/Intern/Intern/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/office/extra/Intern/Intern/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-q2kp87ujhr

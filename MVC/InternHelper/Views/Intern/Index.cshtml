@@ -1,0 +1,75 @@
+@model List<InternHelper.Models.Intern>
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Interns</h2>
+        <a asp-action="Create" class="btn btn-primary"> Add Intern</a>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <table class="table table-border table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Intern Id</th>
+                        <th>Intern Name</th>
+                        <th>Gender</th>
+                        <th>Topic</th>
+                        <th>Date of Presentation</th>
+                        <th>Status</th>
+                        <th>Topic Image</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var intern in Model)
+                    {
+                        <tr>
+                            <td>@intern.InternId</td>
+                            <td>@intern.InternName</td>
+                            <td>
+                                @if (intern.Gender == "M")
+                                {
+                                    <span>Male</span>
+                                }
+                                else if (intern.Gender == "F")
+                                {
+                                    <span>Female</span>
+                                }
+                                else
+                                {
+                                    <span>Other</span>
+                                }
+                            </td>
+                            <td>@intern.TopicName</td>
+                            <td>@intern.DateOfPresentation.ToString("dd-mm-yyyy")</td>
+                            <td>
+                                @if (intern.Status)
+                                {
+                                    <span class="badge bg-success">Active</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">Inactive</span>
+                                }
+                            </td>
+                            <td>@intern.TopicImage</td>
+                            <td>
+                                <a asp-controller="Intern" asp-action="Edit" asp-route-id="@intern.InternId"
+                                   class="btn btn-warning btn-sm">
+                                    Edit
+                                </a>
+                                <a asp-controller="Intern" asp-action="Delete" asp-route-id="@intern.InternId"
+                                   class="btn btn-danger btn-sm">
+                                    Delete
+                                </a>
+                            </td>
+                          
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+@model InternHelper.Models.Topic;
+
+<div class="container mt-4">
+    <h2>Delete Topic</h2>
+
+    <div class="card shadow-sm mt-3">
+        <div class="card-body">
+            <h5>Are you sure you want to delete this topic?</h5>
+
+            <p>
+                <strong>ID : </strong> @Model.TopicId
+            </p>
+
+            <p>
+                <strong>Topic : </strong>@Model.TopicName
+            </p>
+
+            <form method="post">
+                <input type="hidden" name="TopicId" value="@Model.TopicId">
+
+                <button type="submit" class="btn btn-danger"> Yes, Delete</button>
+
+                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,5 @@
+mkdir DemoMVC
+cd DemoMVC
+mkdir MVC
+cd MVC
+dotnet new mvc

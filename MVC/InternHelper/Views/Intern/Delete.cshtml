@@ -1,0 +1,65 @@
+@model InternHelper.Models.Intern
+
+<div class="container mt-4">
+
+    <h2>Delete Intern</h2>
+
+    <div class="card shadow-sm mt-3">
+
+        <div class="card-body">
+
+            <h5>
+                Are you sure you want to delete this intern?
+            </h5>
+
+            <hr />
+
+            <p>
+                <strong>Intern ID:</strong>
+                @Model.InternId
+            </p>
+
+            <p>
+                <strong>Intern Name:</strong>
+                @Model.InternName
+            </p>
+
+            <p>
+                <strong>Gender:</strong>
+                @Model.Gender
+            </p>
+
+            <p>
+                <strong>Topic ID:</strong>
+                @Model.TopicId
+            </p>
+
+            <p>
+                <strong>Date:</strong>
+                @Model.DateOfPresentation.ToString("dd-MM-yyyy")
+            </p>
+
+            <form method="post">
+
+                <input type="hidden"
+                       name="InternId"
+                       value="@Model.InternId" />
+
+                <button type="submit"
+                        class="btn btn-danger">
+                    Yes, Delete
+                </button>
+
+                <a asp-controller="Intern"
+                   asp-action="Index"
+                   class="btn btn-secondary">
+                    Cancel
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

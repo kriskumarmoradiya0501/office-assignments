@@ -1,0 +1,151 @@
+@model InternHelper.Models.Intern
+
+<div class="container mt-4">
+
+    <h2>Edit Intern</h2>
+
+    <div class="card shadow-sm mt-3">
+
+        <div class="card-body">
+
+            <form method="post">
+
+                <input type="hidden"
+                       name="InternId"
+                       value="@Model.InternId" />
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Intern Name
+                    </label>
+
+                    <input type="text"
+                           name="InternName"
+                           value="@Model.InternName"
+                           class="form-control">
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Gender
+                    </label>
+
+                    <select name="Gender"
+                            class="form-select">
+
+                        <option value="M"
+                                selected="@(Model.Gender == "M")">
+                            Male
+                        </option>
+
+                        <option value="F"
+                                selected="@(Model.Gender == "F")">
+                            Female
+                        </option>
+
+                        <option value="O"
+                                selected="@(Model.Gender == "O")">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Topic
+                    </label>
+
+                    <select name="TopicId"
+                            class="form-select">
+
+                        @foreach (var topic in ViewBag.Topics)
+                        {
+                            <option value="@topic.TopicId"
+                                    selected="@(Model.TopicId == topic.TopicId)">
+                                @topic.TopicName
+                            </option>
+                        }
+
+                    </select>
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Date of Presentation
+                    </label>
+
+                    <input type="date"
+                           name="DateOfPresentation"
+                           value="@Model.DateOfPresentation.ToString("yyyy-MM-dd")"
+                           class="form-control">
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Status
+                    </label>
+
+                    <div class="form-check">
+
+                        <input type="checkbox"
+                               name="Status"
+                               value="true"
+                               class="form-check-input"
+                               checked="@Model.Status">
+
+                        <label class="form-check-label">
+                            Active
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Topic Image
+                    </label>
+
+                    <input type="text"
+                           name="TopicImage"
+                           value="@Model.TopicImage"
+                           class="form-control">
+
+                </div>
+
+
+                <button type="submit"
+                        class="btn btn-primary">
+                    Update
+                </button>
+
+                <a asp-controller="Intern"
+                   asp-action="Index"
+                   class="btn btn-secondary">
+                    Cancel
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

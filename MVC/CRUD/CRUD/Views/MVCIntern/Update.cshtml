@@ -1,0 +1,160 @@
+@model Crud_Ajax.Models.InternClass
+@{
+    ViewData["Title"] = "Update Intern";
+}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<h1>Update Intern</h1>
+<div id="ajaxMessage" class="alert" hidden></div>
+<form asp-action="Update" method="post" enctype="multipart/form-data" data-ajax="true">
+    <input type="hidden" asp-for="InternId" />
+    <div class="form-group">
+        <label asp-for="InternName"></label>
+        <input asp-for="InternName" class="form-control" />
+        <span asp-validation-for="InternName" class="text-danger"></span>
+    </div>
+ 
+    <div class="form-group">
+        <label asp-for="Gender" class="control-label col-md-2"></label>
+        <div class="col-md-10">
+            <div class="form-check form-check-inline">
+                @{
+                    if (Model.Gender == "M")
+                    {
+                        <input class="form-check-input" type="radio" asp-for="Gender" value="M" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="radio" asp-for="Gender" value="M" />
+                    }
+                }
+                <label class="form-check-label" for="GenderM">Male</label>
+            </div>
+            <div class="form-check form-check-inline">
+                @{
+                    if (Model.Gender == "F")
+                    {
+                        <input class="form-check-input" type="radio" asp-for="Gender" value="F" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="radio" asp-for="Gender" value="F" />
+                    }
+                }
+                <label class="form-check-label" for="GenderF">Female</label>
+            </div>
+            <span asp-validation-for="Gender" class="text-danger"></span>
+        </div>
+    </div>
+ 
+    @* <div class="form-group">
+        <label asp-for="Gender"></label>
+        <select asp-for="Gender" class="form-control">
+            <option value="">Select Gender</option>
+            @if (Model.Gender == "M")
+            {
+                <option value="M" selected>Male</option>
+                <option value="F">Female</option>
+            }
+            else if (Model.Gender == "F")
+            {
+                <option value="M">Male</option>
+                <option value="F" selected>Female</option>
+            }
+        </select>
+        <span asp-validation-for="Gender" class="text-danger"></span>
+    </div> *@
+
+    <div class="form-group">
+        <label asp-for="TopicId"></label>
+        <select asp-for="TopicId" class="form-control">
+            <option value="">Select Topic</option>
+            @if (ViewBag.Topics != null)
+            {
+                @foreach (var topic in ViewBag.Topics)
+                {
+                    if (Model.TopicId == topic.TopicId)
+                    {
+                        <option value="@topic.TopicId" selected>@topic.TopicName</option>
+                    }
+                    else
+                    {
+                        <option value="@topic.TopicId">@topic.TopicName</option>
+                    }
+                }
+            }
+        </select>
+        <span asp-validation-for="TopicId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DateOfPresentation"></label>
+        <input asp-for="DateOfPresentation" class="form-control" type="date" />
+        <span asp-validation-for="DateOfPresentation" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Status"></label>
+        <input asp-for="Status" type="checkbox" />
+        <span asp-validation-for="Status" class="text-danger"></span>
+    </div>
+
+    <!-- Topic Image Upload -->
+    <div class="form-group">
+        <label asp-for="TopicImageFile"></label>
+        <input asp-for="TopicImageFile" type="file" class="form-control" accept="image/*" onchange="previewImage(event)" />
+        <span asp-validation-for="TopicImageFile" class="text-danger"></span>
+    </div>
+
+    <!-- Display Existing Image if Exists -->
+    @if (!string.IsNullOrEmpty(Model.TopicImage))
+    {
+        <div class="form-group">
+            <label>Current Image:</label>
+            <div>
+                @{
+                    var currentImg = Model.TopicImage.StartsWith("/") || Model.TopicImage.StartsWith("http") 
+                        ? Model.TopicImage 
+                        : Url.Content("~/images/" + Model.TopicImage);
+                }
+                <img id="imagePreview"
+                     src="@currentImg"
+                     @* src=@Model.TopicImage *@
+                     alt="Intern Image"
+                     class="img-thumbnail"
+                     style="max-width: 200px; max-height: 200px;" />
+            </div>
+        </div>
+    }
+    else
+    {
+        <!-- If no image exists, still keep preview placeholder -->
+        <img id="imagePreview"
+             src="https://via.placeholder.com/200"
+             alt="No Image"
+             class="img-thumbnail"
+             style="max-width: 200px; max-height: 200px;" />
+    }
+
+    <button type="submit" class="btn btn-primary">Update Intern</button>
+    <a asp-action="GetAll" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    @* @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{ Html.RenderPartial("_ValidationScriptsPartial");} *@
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        function previewImage(event) {
+            var output = document.getElementById('imagePreview');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function () {
+                URL.revokeObjectURL(output.src); // free memory
+            }
+        }
+    </script>
+}

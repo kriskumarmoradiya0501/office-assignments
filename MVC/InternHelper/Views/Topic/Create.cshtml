@@ -1,0 +1,24 @@
+@model InternHelper.Models.Topic
+
+<div class="container mt-4">
+    <h2>Add Topic</h2>
+
+    <div class="card shadow-sm mt-3">
+        <div class="card-body">
+            <form method="post">
+                <div class="mb-3">
+                    <label class="form-lable">Topic Name</label>
+
+                    <input type="text" name="TopicName" class="from-control">
+                </div>
+                <button class="btn btn-primary" type="submit">
+                    Save
+                </button>
+
+                <a class="btn btn-secondary" asp-action="Index">
+                    Cancel
+                </a>
+            </form>
+        </div>
+    </div>
+</div>

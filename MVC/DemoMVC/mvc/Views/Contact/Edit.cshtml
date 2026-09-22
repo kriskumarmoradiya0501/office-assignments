@@ -1,0 +1,238 @@
+@model Repositories.t_Contact
+
+@{
+    ViewData["Title"] = "Edit Contact";
+
+    string[] selectedGroups = string.IsNullOrEmpty(Model.c_group)
+        ? Array.Empty<string>()
+        : Model.c_group.Split(',');
+}
+
+<h2>Edit Contact</h2>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.Message
+    </div>
+}
+
+<form asp-controller="Contact"
+      asp-action="Edit"
+      method="post"
+      enctype="multipart/form-data">
+
+    <!-- Hidden Contact ID -->
+    <input asp-for="c_contactid" type="hidden" />
+
+
+    <!-- Name -->
+    <div class="mb-3">
+
+        <label asp-for="c_name"
+               class="form-label">
+        </label>
+
+        <input asp-for="c_name"
+               class="form-control" />
+
+        <span asp-validation-for="c_name"
+              class="text-danger">
+        </span>
+
+    </div>
+
+
+    <!-- Email -->
+    <div class="mb-3">
+
+        <label asp-for="c_email"
+               class="form-label">
+        </label>
+
+        <input asp-for="c_email"
+               class="form-control" />
+
+        <span asp-validation-for="c_email"
+              class="text-danger">
+        </span>
+
+    </div>
+
+
+    <!-- Group -->
+    <div class="mb-3">
+
+        <label class="form-label">
+            Group
+        </label>
+
+        <div>
+            <input type="checkbox"
+                   class="group-checkbox"
+                   value="Family"
+                   @(selectedGroups.Contains("Family") ? "checked" : "") />
+
+            <label>Family</label>
+        </div>
+
+        <div>
+            <input type="checkbox"
+                   class="group-checkbox"
+                   value="Friends"
+                   @(selectedGroups.Contains("Friends") ? "checked" : "") />
+
+            <label>Friends</label>
+        </div>
+
+        <div>
+            <input type="checkbox"
+                   class="group-checkbox"
+                   value="College"
+                   @(selectedGroups.Contains("College") ? "checked" : "") />
+
+            <label>College</label>
+        </div>
+
+        <div>
+            <input type="checkbox"
+                   class="group-checkbox"
+                   value="Work"
+                   @(selectedGroups.Contains("Work") ? "checked" : "") />
+
+            <label>Work</label>
+        </div>
+
+        <!-- Hidden field -->
+        <input asp-for="c_group"
+               type="hidden" />
+
+    </div>
+
+
+    <!-- Address -->
+    <div class="mb-3">
+
+        <label asp-for="c_address"
+               class="form-label">
+        </label>
+
+        <textarea asp-for="c_address"
+                  class="form-control">
+        </textarea>
+
+    </div>
+
+
+    <!-- Mobile -->
+    <div class="mb-3">
+
+        <label asp-for="c_mobile"
+               class="form-label">
+        </label>
+
+        <input asp-for="c_mobile"
+               class="form-control" />
+
+    </div>
+
+
+    <!-- Status -->
+    <div class="mb-3">
+
+        <label class="form-label">
+            Status
+        </label>
+
+        <div class="form-check">
+
+            <input asp-for="c_status"
+                   class="form-check-input" />
+
+            <label asp-for="c_status"
+                   class="form-check-label">
+                Active
+            </label>
+
+        </div>
+
+    </div>
+
+
+    <!-- Existing Image -->
+    @if (!string.IsNullOrEmpty(Model.c_image))
+    {
+        <div class="mb-3">
+
+            <label class="form-label">
+                Current Picture
+            </label>
+
+            <br />
+
+            <img src="~/profile_images/@Model.c_image"
+                 width="120"
+                 height="120"
+                 style="object-fit: cover;"
+                 class="rounded" />
+
+        </div>
+    }
+
+
+    <!-- New Image -->
+    <div class="mb-3">
+
+        <label asp-for="ContactPicture"
+               class="form-label">
+            Change Picture
+        </label>
+
+        <input asp-for="ContactPicture"
+               type="file"
+               class="form-control" />
+
+    </div>
+
+
+    <!-- Buttons -->
+    <button type="submit"
+            class="btn btn-primary">
+        Update Contact
+    </button>
+
+    <a asp-controller="Contact"
+       asp-action="List"
+       class="btn btn-secondary">
+        Cancel
+    </a>
+
+</form>
+
+
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+
+        document.querySelector("form").addEventListener("submit", function () {
+
+            let selectedGroups = [];
+
+            document.querySelectorAll(".group-checkbox:checked")
+                .forEach(function (checkbox) {
+
+                    selectedGroups.push(checkbox.value);
+
+                });
+
+            document.getElementById("c_group").value =
+                selectedGroups.join(",");
+
+        });
+
+    </script>
+}

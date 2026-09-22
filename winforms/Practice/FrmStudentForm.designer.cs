@@ -37,15 +37,15 @@ namespace Practice
             this.txtAge = new System.Windows.Forms.TextBox();
             this.dtpDob = new System.Windows.Forms.DateTimePicker();
             this.grpGender = new System.Windows.Forms.GroupBox();
-            this.rbMale = new System.Windows.Forms.RadioButton();
-            this.rbOther = new System.Windows.Forms.RadioButton();
             this.rbFemale = new System.Windows.Forms.RadioButton();
+            this.rbOther = new System.Windows.Forms.RadioButton();
+            this.rbMale = new System.Windows.Forms.RadioButton();
             this.cmbDepartment = new System.Windows.Forms.ComboBox();
             this.grpSkills = new System.Windows.Forms.GroupBox();
-            this.chkCsharp = new System.Windows.Forms.CheckBox();
-            this.chkJava = new System.Windows.Forms.CheckBox();
-            this.chkPython = new System.Windows.Forms.CheckBox();
             this.chkSql = new System.Windows.Forms.CheckBox();
+            this.chkPython = new System.Windows.Forms.CheckBox();
+            this.chkJava = new System.Windows.Forms.CheckBox();
+            this.chkCsharp = new System.Windows.Forms.CheckBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.lblAddress = new System.Windows.Forms.Label();
             this.btnClear = new System.Windows.Forms.Button();
@@ -53,6 +53,9 @@ namespace Practice
             this.dgvStudents = new System.Windows.Forms.DataGridView();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.lblSearch = new System.Windows.Forms.Label();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.grpGender.SuspendLayout();
             this.grpSkills.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudents)).BeginInit();
@@ -130,15 +133,15 @@ namespace Practice
             this.grpGender.TabStop = false;
             this.grpGender.Text = "Gender";
             // 
-            // rbMale
+            // rbFemale
             // 
-            this.rbMale.Location = new System.Drawing.Point(6, 21);
-            this.rbMale.Name = "rbMale";
-            this.rbMale.Size = new System.Drawing.Size(104, 24);
-            this.rbMale.TabIndex = 0;
-            this.rbMale.TabStop = true;
-            this.rbMale.Text = "Male";
-            this.rbMale.UseVisualStyleBackColor = true;
+            this.rbFemale.Location = new System.Drawing.Point(78, 21);
+            this.rbFemale.Name = "rbFemale";
+            this.rbFemale.Size = new System.Drawing.Size(80, 24);
+            this.rbFemale.TabIndex = 2;
+            this.rbFemale.TabStop = true;
+            this.rbFemale.Text = "Female";
+            this.rbFemale.UseVisualStyleBackColor = true;
             // 
             // rbOther
             // 
@@ -150,15 +153,15 @@ namespace Practice
             this.rbOther.Text = "Other";
             this.rbOther.UseVisualStyleBackColor = true;
             // 
-            // rbFemale
+            // rbMale
             // 
-            this.rbFemale.Location = new System.Drawing.Point(78, 21);
-            this.rbFemale.Name = "rbFemale";
-            this.rbFemale.Size = new System.Drawing.Size(80, 24);
-            this.rbFemale.TabIndex = 2;
-            this.rbFemale.TabStop = true;
-            this.rbFemale.Text = "Female";
-            this.rbFemale.UseVisualStyleBackColor = true;
+            this.rbMale.Location = new System.Drawing.Point(6, 21);
+            this.rbMale.Name = "rbMale";
+            this.rbMale.Size = new System.Drawing.Size(104, 24);
+            this.rbMale.TabIndex = 0;
+            this.rbMale.TabStop = true;
+            this.rbMale.Text = "Male";
+            this.rbMale.UseVisualStyleBackColor = true;
             // 
             // cmbDepartment
             // 
@@ -186,25 +189,15 @@ namespace Practice
             this.grpSkills.TabStop = false;
             this.grpSkills.Text = "Skills";
             // 
-            // chkCsharp
+            // chkSql
             // 
-            this.chkCsharp.AutoSize = true;
-            this.chkCsharp.Location = new System.Drawing.Point(4, 21);
-            this.chkCsharp.Name = "chkCsharp";
-            this.chkCsharp.Size = new System.Drawing.Size(45, 20);
-            this.chkCsharp.TabIndex = 0;
-            this.chkCsharp.Text = "C#";
-            this.chkCsharp.UseVisualStyleBackColor = true;
-            // 
-            // chkJava
-            // 
-            this.chkJava.AutoSize = true;
-            this.chkJava.Location = new System.Drawing.Point(6, 47);
-            this.chkJava.Name = "chkJava";
-            this.chkJava.Size = new System.Drawing.Size(63, 20);
-            this.chkJava.TabIndex = 0;
-            this.chkJava.Text = "JAVA";
-            this.chkJava.UseVisualStyleBackColor = true;
+            this.chkSql.AutoSize = true;
+            this.chkSql.Location = new System.Drawing.Point(117, 21);
+            this.chkSql.Name = "chkSql";
+            this.chkSql.Size = new System.Drawing.Size(55, 20);
+            this.chkSql.TabIndex = 0;
+            this.chkSql.Text = "SQL";
+            this.chkSql.UseVisualStyleBackColor = true;
             // 
             // chkPython
             // 
@@ -216,15 +209,25 @@ namespace Practice
             this.chkPython.Text = "Python";
             this.chkPython.UseVisualStyleBackColor = true;
             // 
-            // chkSql
+            // chkJava
             // 
-            this.chkSql.AutoSize = true;
-            this.chkSql.Location = new System.Drawing.Point(117, 21);
-            this.chkSql.Name = "chkSql";
-            this.chkSql.Size = new System.Drawing.Size(55, 20);
-            this.chkSql.TabIndex = 0;
-            this.chkSql.Text = "SQL";
-            this.chkSql.UseVisualStyleBackColor = true;
+            this.chkJava.AutoSize = true;
+            this.chkJava.Location = new System.Drawing.Point(6, 47);
+            this.chkJava.Name = "chkJava";
+            this.chkJava.Size = new System.Drawing.Size(63, 20);
+            this.chkJava.TabIndex = 0;
+            this.chkJava.Text = "JAVA";
+            this.chkJava.UseVisualStyleBackColor = true;
+            // 
+            // chkCsharp
+            // 
+            this.chkCsharp.AutoSize = true;
+            this.chkCsharp.Location = new System.Drawing.Point(4, 21);
+            this.chkCsharp.Name = "chkCsharp";
+            this.chkCsharp.Size = new System.Drawing.Size(45, 20);
+            this.chkCsharp.TabIndex = 0;
+            this.chkCsharp.Text = "C#";
+            this.chkCsharp.UseVisualStyleBackColor = true;
             // 
             // txtAddress
             // 
@@ -265,6 +268,7 @@ namespace Practice
             // 
             // dgvStudents
             // 
+            this.dgvStudents.AllowUserToOrderColumns = true;
             this.dgvStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvStudents.Location = new System.Drawing.Point(12, 420);
             this.dgvStudents.Name = "dgvStudents";
@@ -272,10 +276,11 @@ namespace Practice
             this.dgvStudents.RowTemplate.Height = 24;
             this.dgvStudents.Size = new System.Drawing.Size(460, 136);
             this.dgvStudents.TabIndex = 9;
+            this.dgvStudents.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvStudents_CellClick);
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(155, 562);
+            this.txtSearch.Location = new System.Drawing.Point(68, 563);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(100, 22);
             this.txtSearch.TabIndex = 1;
@@ -284,17 +289,49 @@ namespace Practice
             // lblSearch
             // 
             this.lblSearch.AutoSize = true;
-            this.lblSearch.Location = new System.Drawing.Point(86, 568);
+            this.lblSearch.Location = new System.Drawing.Point(12, 569);
             this.lblSearch.Name = "lblSearch";
             this.lblSearch.Size = new System.Drawing.Size(50, 16);
             this.lblSearch.TabIndex = 0;
             this.lblSearch.Text = "Search";
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Location = new System.Drawing.Point(189, 566);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(75, 23);
+            this.btnEdit.TabIndex = 10;
+            this.btnEdit.Text = "Edit";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(296, 566);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(75, 23);
+            this.btnUpdate.TabIndex = 11;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(386, 566);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 11;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // FrmStudentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 605);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnUpdate);
+            this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.dgvStudents);
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.btnClear);
@@ -348,5 +385,8 @@ namespace Practice
         private System.Windows.Forms.DataGridView dgvStudents;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label lblSearch;
+        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnDelete;
     }
 }

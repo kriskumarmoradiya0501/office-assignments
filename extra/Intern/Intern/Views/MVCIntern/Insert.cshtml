@@ -1,0 +1,53 @@
+@model InterClass
+@{
+    ViewData["Title"] = "Add Intern";
+}
+
+<h1>Add intern</h1>
+<form asp-action="Insert" method="post" enctype="multipart/form-data" class="mt-3">
+    @* <div asp-validation-summary="ModelOnly" class="text-danger"></div> *@
+    <div class="mb-3">
+        <label asp-for="InternName" class="form-label"></label>
+        <input asp-for="InternName" class="form-control" />
+        @* <span asp-validation-for="InternName" class="text-danger"></span> *@
+    </div>
+    <div class="mb-3">
+        <label asp-for="Gender" class="form-label"></label>
+        <div>
+            <input asp-for="Gender" type="radio" value="M" /> Male
+            <input asp-for="Gender" type="radio" value="F" class="ms-3" /> Female
+            <input asp-for="Gender" type="radio" value="O" class="ms-3" /> Other
+        </div>
+        @* <span asp-validation-for="Gender" class="text-danger"></span> *@
+    </div>
+    <div class="mb-3">
+        <label asp-for="TopicId" class="form-label"></label>
+        <select asp-for="TopicId" class="form-select">
+            <option value="">Select topic</option>
+            @foreach (var topic in ViewBag.Topics)
+            {
+                <option value="@topic.TopicId">@topic.TopicName</option>
+            }
+        </select>
+        @* <span asp-validation-for="TopicId" class="text-danger"></span> *@
+    </div>
+    <div class="mb-3">
+        <label asp-for="DateOfPresentation" class="form-label"></label>
+        <input asp-for="DateOfPresentation" type="date" class="form-control" />
+        @* <span asp-validation-for="DateOfPresentation" class="text-danger"></span> *@
+    </div>
+    <div class="form-check mb-3">
+        <input asp-for="Status" class="form-check-input" />
+        <label asp-for="Status" class="form-check-label"></label>
+    </div>
+    <div class="mb-3">
+        <label asp-for="TopicImageFile" class="form-label"></label>
+        <input asp-for="TopicImageFile" type="file" accept="image/*" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Add intern</button>
+    <a asp-action="GetAll" class="btn btn-secondary">Cancel</a>
+</form>
+
+@* @section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+} *@

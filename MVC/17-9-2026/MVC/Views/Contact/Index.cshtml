@@ -1,0 +1,23 @@
+@{
+    ViewData["Title"] = "Contacts";
+    Layout = "../Shared/_ContactLayout.cshtml";
+}
+@using Repositories
+@model t_User
+<h3>My Profile</h3>
+<br>
+<br>
+<div class="continer row">
+    <div class="col-md-3">
+        <img id="image" src="~/profile_images/@Model.c_Image" width="150" style="border-radius: 50%;" />
+    </div>
+    <div class="col-md-9">
+        <div class="mt-4">
+            <h3>Name : <span id="name"> @Model.c_UserName</span> </h3>
+            <h4>Email : <span id="email">@Model.c_Email</span> </h4>
+            <h4>Mobile : <span id="mobile">@Model.c_Mobile</span> </h4>
+            <h5>Gender : <span id="gender">@Model.c_Gender</span> </h5>
+            <h5>Address : <span id="address">@Model.c_Address</span> </h5>
+        </div>
+    </div>
+</div>

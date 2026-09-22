@@ -1,0 +1,22 @@
+CREATE TABLE t_user (
+    c_userid SERIAL PRIMARY KEY,
+    c_username VARCHAR(100) NOT NULL,
+    c_email VARCHAR(100) NOT NULL,
+    c_password VARCHAR(100) NOT NULL,
+    c_address VARCHAR(200),
+    c_mobile VARCHAR(20),
+    c_gender VARCHAR(20),
+    c_image VARCHAR(200)
+);
+
+CREATE TABLE t_contact (
+    c_contactid SERIAL PRIMARY KEY,
+    c_userid INT NOT NULL,
+    c_name VARCHAR(100) NOT NULL,
+    c_email VARCHAR(100) NOT NULL,
+    c_group VARCHAR(200),
+    c_address VARCHAR(200),
+    c_mobile VARCHAR(20),
+    c_image VARCHAR(200),
+    c_status BOOLEAN DEFAULT TRUE
+);

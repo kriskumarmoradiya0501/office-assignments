@@ -61,10 +61,10 @@ namespace Practice
             string department = cmbDepartment.SelectedItem.ToString();
 
             string skills = "";
-            if (chkCsharp.Checked) skills += "C#";
-            if (chkJava.Checked) skills += " Java";
-            if (chkPython.Checked) skills += " Python";
-            if (chkSql.Checked) skills += " SQL";
+            if (chkCsharp.Checked) skills += "C# ";
+            if (chkJava.Checked) skills += "Java ";
+            if (chkPython.Checked) skills += "Python ";
+            if (chkSql.Checked) skills += "SQL ";
 
             if (skills == "")
             {
@@ -136,5 +136,122 @@ namespace Practice
                 }
             }
         }
+        private int SelectedRowIndex = -1;
+        private void DgvStudents_CellClick(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+            {
+                MessageBox.Show("Grid view is empty.");
+                return;
+            }
+
+            SelectedRowIndex = e.RowIndex;
+
+            DataGridViewRow row = dgvStudents.Rows[e.RowIndex];
+
+            txtName.Text = row.Cells["Name"].Value?.ToString();
+            txtAge.Text = row.Cells["Age"].Value?.ToString();
+            txtAddress.Text = row.Cells["Address"].Value?.ToString();
+
+            string gender = row.Cells["Gender"].Value?.ToString();
+
+            rbMale.Checked = gender == "Male";
+            rbFemale.Checked = gender == "Female";
+            rbOther.Checked = gender == "Other";
+
+            string department = row.Cells["Department"].Value?.ToString();
+
+            MessageBox.Show(row.Cells["Skills"].Value?.ToString());
+
+            string skillsSpliter = row.Cells["Skills"].Value?.ToString() ?? "";
+
+
+            chkCsharp.Checked = skillsSpliter.Contains("C# ");
+            chkJava.Checked = skillsSpliter.Contains("Java ");
+            chkPython.Checked = skillsSpliter.Contains("Python ");
+            chkSql.Checked = skillsSpliter.Contains("SQL ");
+
+
+            cmbDepartment.SelectedItem = department;
+
+        }
+
+        private void BtnUpdate_Click(object sender, System.EventArgs e)
+        {
+            if (SelectedRowIndex == -1)
+            {
+                MessageBox.Show("Please select a student first.");
+                return;
+            }
+
+            DataGridViewRow row = dgvStudents.Rows[SelectedRowIndex];
+
+            row.Cells["Name"].Value = txtName.Text;
+
+            if (!int.TryParse(txtAge.Text, out int age))
+            {
+                MessageBox.Show("Please enter valid age.");
+                txtAge.Focus();
+                return;
+            }
+            row.Cells["Age"].Value = age;
+
+            row.Cells["Address"].Value = txtAddress.Text;
+
+            row.Cells["gender"].Value = "";
+            if (rbFemale.Checked) row.Cells["Gender"].Value = "Female";
+            if (rbMale.Checked) row.Cells["Gender"].Value = "Male";
+            if (rbOther.Checked) row.Cells["Gender"].Value = "Other";
+            if (row.Cells["gender"].Value == "")
+            {
+                MessageBox.Show("Please select your gender");
+                return;
+            }
+
+            row.Cells["Skills"].Value = "";
+            if (chkCsharp.Checked) row.Cells["Skills"].Value += "C# ";
+            if (chkJava.Checked) row.Cells["Skills"].Value += "Java ";
+            if (chkPython.Checked) row.Cells["Skills"].Value += "Python ";
+            if (chkSql.Checked) row.Cells["Skills"].Value += "SQL ";
+
+            if (row.Cells["Skills"].Value == "")
+            {
+                MessageBox.Show("Please select skills");
+                return;
+            }
+
+            row.Cells["DOB"].Value = dtpDob.Value.ToShortDateString();
+
+            row.Cells["Department"].Value = cmbDepartment.Text;
+
+
+        }
+
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            if (SelectedRowIndex == -1)
+            {
+                MessageBox.Show("Please select a student first.");
+                return;
+            }
+
+            DialogResult result = MessageBox.Show(
+                "Are you sure you want to delete this student?",
+                "Confirm Delete",
+                MessageBoxButtons.YesNo
+            );
+
+            if (result == DialogResult.Yes)
+            {
+                dgvStudents.Rows.RemoveAt(SelectedRowIndex);
+
+                SelectedRowIndex = -1;
+
+                clear();
+
+                MessageBox.Show("Student deleted successfully.");
+            }
+        }
+
     }
 }

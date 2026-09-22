@@ -1,0 +1,28 @@
+CREATE TABLE IF NOT EXISTS public.t_topic (
+    c_topicid INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    c_topicname VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS public.t_intern (
+    c_internid INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    c_internname VARCHAR(100) NOT NULL,
+    c_gender CHAR(1) NOT NULL CHECK (c_gender IN ('M', 'F', 'O')),
+    c_topicid INTEGER NOT NULL,
+    c_date DATE NULL,
+    c_status BOOLEAN NOT NULL DEFAULT FALSE,
+    c_topic_image VARCHAR(255) NULL,
+
+    CONSTRAINT fk_intern_topic
+        FOREIGN KEY (c_topicid)
+        REFERENCES public.t_topic(c_topicid)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT
+);
+INSERT INTO public.t_topic (c_topicname)
+VALUES
+    ('C#'),
+    ('ASP.NET Core'),
+    ('Database'),
+    ('Web Development'),
+    ('JavaScript')
+ON CONFLICT (c_topicname) DO NOTHING;

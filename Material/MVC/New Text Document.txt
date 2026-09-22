@@ -1,0 +1,3 @@
+https://www.csharp.com/article/unit-test-in-net-core-application-using-xunit/
+https://www.csharp.com/article/unit-testing-in-net-core-getting-started-with-xunit-net/
+https://www.csharp.com/blogs/unit-test-using-xunit-in-net-core-6

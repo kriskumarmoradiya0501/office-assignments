@@ -1,0 +1,49 @@
+@model Repositories.vm_Login
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h2>Login</h2>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.Message
+    </div>
+}
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Message"]
+    </div>
+}
+
+<form asp-action="Login" method="post">
+
+    <div class="mb-3">
+        <label asp-for="c_email" class="form-label"></label>
+        <input asp-for="c_email" class="form-control" />
+        <span asp-validation-for="c_email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="c_password" class="form-label"></label>
+        <input asp-for="c_password"
+               type="password"
+               class="form-control" />
+        <span asp-validation-for="c_password" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Login
+    </button>
+
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

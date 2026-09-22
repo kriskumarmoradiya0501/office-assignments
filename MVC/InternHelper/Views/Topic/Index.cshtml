@@ -1,0 +1,48 @@
+@model List<InternHelper.Models.Topic>
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Topics</h2>
+
+        <a asp-action="Create" class="btn btn-primary">
+            Add Topic
+        </a>
+    </div>
+
+    <div class="card shadow-sm">
+
+        <div class="card-body">
+
+            <table class="table table-bordered table-hover">
+
+                <thead class="table-dark">
+                    <tr>
+                        <th>Topic ID</th>
+                        <th>Topic Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var topic in Model)
+                    {
+                        <tr>
+                            <td>@topic.TopicId</td>
+                            <td>@topic.TopicName</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@topic.TopicId" class="btn btn-warning btn-sm">Edit</a>
+                                <a asp-action="Delete" asp-route-id="@topic.TopicId" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                            
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

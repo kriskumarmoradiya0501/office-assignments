@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">MVC Request Demo</h1>
+    <p>Click the button, then watch the terminal for the middleware and service messages.</p>
+
+    <form asp-controller="Home" asp-action="Demo" method="post">
+        <button type="submit" class="btn btn-primary">Run demo</button>
+    </form>
+
+    @if (ViewData["Result"] is string result)
+    {
+        <div class="alert alert-success mt-4" role="alert">
+            @result
+        </div>
+    }
+
+    <hr class="my-5" />
+
+    <h2 class="h4">Password validation demo</h2>
+    <p>Required: at least 8 characters, one capital letter, and one number.</p>
+
+    <form asp-controller="Home" asp-action="CheckPassword" method="post" class="text-start mx-auto" style="max-width: 420px;">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" id="password" name="password" class="form-control" required />
+        <button type="submit" class="btn btn-success mt-3">Check password</button>
+    </form>
+
+    @if (ViewData["PasswordIsValid"] is bool passwordIsValid)
+    {
+        <div class="alert @(passwordIsValid ? "alert-success" : "alert-danger") mt-4 text-start" role="alert">
+            Password is @(passwordIsValid ? "valid" : "not valid").
+            <ul class="mb-0">
+                <li>Length: @ViewData["PasswordLengthCheck"]</li>
+                <li>Capital letter: @ViewData["PasswordCapitalCheck"]</li>
+                <li>Number: @ViewData["PasswordNumberCheck"]</li>
+            </ul>
+        </div>
+    }
+</div>
